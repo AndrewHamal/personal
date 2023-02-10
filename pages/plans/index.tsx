@@ -9,7 +9,7 @@ import Skeleton from '../components/skeleton';
 
 export default function Plans() {
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [selectedFeature, setSelectedFeature] = useState(null);
+  const [selectedFeature, setSelectedFeature] = useState<any>(null);
 
   const fetcher = (url: any) => instance(url);
   const { data, error }: any = useSWR('plans', fetcher);

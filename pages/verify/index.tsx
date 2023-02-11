@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Particle from '../components/particle';
+import { getCookie, getCookies } from 'cookies-next';
 
 
 export default function Register() {
@@ -28,7 +29,16 @@ export default function Register() {
     .then(({ data }: any) => {
       setLoading(false);
       toast.success(data.message);
+
+      let selected_plan = getCookie('selected_plan');
+      if(selected_plan)
+      {
+        router.push(`plans/${selected_plan}`);
+        return;
+      }
+
       router.push('plans');
+      
     }).catch(({ response }: any) => {
       setErrors(response?.data);
       setLoading(false);

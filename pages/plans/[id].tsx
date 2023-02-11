@@ -28,6 +28,7 @@ const CheckoutForm = ({ intent }: any) => {
         setLoading(true);
   
         if (elements == null) {
+            toast.error('Something went wrong!');
             return;
         }
         const {setupIntent, error}:any = await stripe.confirmCardSetup( intent?.data?.client_secret, {
@@ -42,8 +43,9 @@ const CheckoutForm = ({ intent }: any) => {
         } else {
             subscription(query.id, setupIntent.payment_method)
             .then(res => {
-                router.push('/success')
+                toast.error(res.data.message);
                 setLoading(false);
+                router.push('/success');
             })
         }
     };

@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import { Eye, EyeOff, Key, Lock, Mail } from 'react-feather'
 import { useState } from 'react'
 import { login } from './api/auth';
-import Link from 'next/link';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
-import Particle from './components/particle';
+import Register from './register';
 
 export default function Home() {
   const [visible, setVisible] = useState('password');
@@ -38,7 +36,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='container-fluid'>
+      <Register/>
+      {/* <div className='container-fluid'>
         <div className='bg-main h-[100vh] d-flex relative'>
           <div className='w-[430px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
             <div className='mt-5'>
@@ -103,11 +102,10 @@ export default function Home() {
 
             </div>
           </div>
-          
-          {/* vector  */}
+
           <Particle/>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

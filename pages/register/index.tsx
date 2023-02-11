@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Eye, EyeOff, Link, Lock, Mail } from 'react-feather'
+import { Eye, EyeOff, Mail } from 'react-feather'
 import { useEffect, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
 import Particle from '../components/particle';
+import Link from 'next/link';
 
 export default function Register() {
   const router = useRouter();

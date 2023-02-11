@@ -154,10 +154,14 @@ a {
 }
 
 @media only screen and (max-width: 600px){
-  body {
-    overflow: scroll!important;
-  }
 
+  .btn-div 
+  {
+    position: absolute; 
+    bottom: 10%;
+    z-index: 9999;
+  }
+  
 	.bg-main .svg {
     display: none!important;
   }
@@ -248,8 +252,8 @@ a {
 }
 
 .bg-fade {
-  background: -moz-linear-gradient(top, rgba(241, 241, 241,0), rgba(241, 241, 241, 1),rgba(241, 241, 241, 1));
-  background: -webkit-linear-gradient(top, rgba(241, 241, 241,0),rgba(241, 241, 241, 1), rgba(241, 241, 241, 1));
+  background: -moz-linear-gradient(top, rgba(241, 241, 241,0),rgba(241, 241, 241, 1), rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1));
+  background: -webkit-linear-gradient(top, rgba(241, 241, 241,0),rgba(241, 241, 241, 1), rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1),rgba(241, 241, 241, 1))
 }
 
 .btn-primary::after {
@@ -263,6 +267,7 @@ a {
   top: 10px;
   bottom: -1px;
   z-index: -2;
+  height: 33px;
 }
 
 .selected { 

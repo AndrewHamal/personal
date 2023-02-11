@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 // request interceptor
-axiosInstance.interceptors.request.use(async function (config) {
+axiosInstance.interceptors.request.use(async function (config: any) {
   if (!config.headers) return;
 
   const token = getCookie("token");

@@ -5,6 +5,7 @@ import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
 import { Eye, EyeOff, Lock, Mail } from 'react-feather';
 import Particle from '../components/particle';
+import Link from 'next/link';
 
 export default function Login() {
   const [visible, setVisible] = useState('password');

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Eye, EyeOff, Lock, Mail } from 'react-feather'
+import { Eye, EyeOff, Link, Lock, Mail } from 'react-feather'
 import { useEffect, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'
@@ -97,6 +97,8 @@ export default function Register() {
                                     <button disabled={loading} type='submit' className='btn-primary w-100'>
                                         { loading ? 'Loading...' : 'Next' } 
                                     </button>
+
+                                    <p className='text-[13px] pt-3 mb-0'><span className='text-[#030128]/[]'> Already a member?</span> <Link href={"login"}><span className='text-[#586FF3]'>Sign In</span></Link></p>
                                 </div>
                             </div>
                         </form>

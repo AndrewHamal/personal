@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Eye, EyeOff, Mail } from 'react-feather'
+import { Eye, EyeOff, Lock, Mail } from 'react-feather'
 import { useEffect, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'

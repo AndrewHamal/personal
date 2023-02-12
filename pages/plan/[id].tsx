@@ -65,7 +65,7 @@ const CheckoutForm = ({ intent }: any) => {
 const stripePromise = loadStripe('pk_test_51MRuPFJloZqbdR1uUvOKMgECphmJ2kL5NVzwuEaRcb2x3F5QLZSmSRhrkVn779nPKpZGL5P7RkiafILpN8sbnT7O00eSjU0xl3');
 
 
-export default function Plans() {
+export default function Plan() {
   let refPlan: any = useRef();
   const { query }: any = useRouter();
   const [selectedPlan, setSelectedPlan] = useState(null);

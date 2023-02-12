@@ -31,7 +31,7 @@ export default function Register() {
       toast.success(data.message);
 
       let selected_plan = getCookie('selected_plan');
-      router.push(`plans/${selected_plan}`);
+      router.push(`/plans/${selected_plan}`);
 
     }).catch(({ response }: any) => {
       setErrors(response?.data);

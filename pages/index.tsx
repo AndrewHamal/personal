@@ -7,28 +7,6 @@ import Register from './register';
 import Plans from './plans';
 
 export default function Home() {
-  const [visible, setVisible] = useState('password');
-  const [errors, setErrors] = useState<any>();
-  const [loading, setLoading] = useState(false);
-
-  function registerUser(e: any)
-  {
-    e.preventDefault();
-    setLoading(true);
-    let form = new FormData(e.target);
-
-    login(form)
-    .then(({ data }: any) => {
-      setCookie('token', data.data.token);
-      toast.success(data.message);
-      setErrors(null);
-      setLoading(false);
-    }).catch(({ response }: any) => {
-      setErrors(response?.data?.errors);
-      setLoading(false);
-    })
-  }
-
   return (
     <>
       <Head>

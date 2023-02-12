@@ -3,11 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'
 import Link from 'next/link';
-import axios from 'axios';
 import Particle from '../components/particle';
 import Skeleton from '../components/skeleton';
 import { setCookie } from 'cookies-next';
-import { useRouter } from 'next/router';
 
 export default function Plans() {
   let refPlan: any = useRef();
@@ -105,28 +103,4 @@ export default function Plans() {
         </div>
     </>
   )
-}
-
-export async function getServerSideProps({ req, res }: any) {
-    let token = req.cookies.token;
-    let selected_plan = req.cookies.selected_plan;
-
-    if(token)
-    {
-        if(selected_plan)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: `/plans/${selected_plan}`
-                },
-            };
-        }
-    }
-
-    return {
-      props: {
-  
-      },
-    }
 }

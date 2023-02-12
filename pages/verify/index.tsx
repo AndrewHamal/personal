@@ -20,11 +20,6 @@ export default function Register() {
 
   const handleChange = (otp: any) => setOpt(otp);
 
-  useEffect(() => {
-    let selected_plan = getCookie('selected_plan');
-    console.log(selected_plan);
-  })
-
   function handleSubmit(e: any)
   {
     e.preventDefault();
@@ -36,14 +31,7 @@ export default function Register() {
       toast.success(data.message);
 
       let selected_plan = getCookie('selected_plan');
-      if(selected_plan)
-      {
-        router.push(`plans/${selected_plan}`);
-        return;
-      }
-
-      router.push('plans');
-
+      router.push(`plans/${selected_plan}`);
     }).catch(({ response }: any) => {
       setErrors(response?.data);
       setLoading(false);
@@ -147,7 +135,7 @@ export async function getServerSideProps({ req, res }: any) {
                     },
                 };
             }
-            
+
             return {
                 redirect: {
                     permanent: false,

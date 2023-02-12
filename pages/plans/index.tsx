@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'
 import Link from 'next/link';
@@ -7,12 +7,23 @@ import axios from 'axios';
 import Particle from '../components/particle';
 import Skeleton from '../components/skeleton';
 import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/router';
 
 export default function Plans() {
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  let refPlan: any = useRef();
+  const [selectedPlan, setSelectedPlan]: any = useState(null);
   const [selectedFeature, setSelectedFeature] = useState<any>(null);
 
   const { data, error }: any = useSWR('plans', instance);
+
+  useEffect(() => {
+    setSelectedPlan(3);
+    if(data){
+        setTimeout(() => {
+            refPlan?.current?.click()
+        }, 50)
+    };
+  }, [data]);
 
   useEffect(() => {
     if(selectedPlan)
@@ -46,7 +57,7 @@ export default function Plans() {
                                 data?.data.map((res:any, key: number) => (
                                     <React.Fragment key={key}>
                                         <div className='w-100'>
-                                            <div onClick={() => {setSelectedPlan(res.id);setSelectedFeature(res.features)}} className={`${selectedPlan === res.id && 'selected'} cursor-pointer bg-[#FFFFFF80] d-flex h-[90px] border-[#03012826] border-[1px] rounded-[10px]`}>
+                                            <div ref={refPlan} onClick={() => {setSelectedPlan(res.id);setSelectedFeature(res.features)}} className={`${selectedPlan === res.id && 'selected'} cursor-pointer bg-[#FFFFFF80] d-flex h-[90px] border-[#03012826] border-[1px] rounded-[10px]`}>
                                                 <div className='m-auto text-center'> 
                                                     <p className='mb-0 text-[#030128] text-[14px] font-[600] capitalize'> { res.price === 0 ? 'Free' : res.intervel}</p>
                                                     <p className='mb-0 text-[19px] font-[700]'>${res.price}</p>

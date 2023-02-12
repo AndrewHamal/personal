@@ -5,7 +5,7 @@ import { register, resendOtp, verifyOtp } from '../api/auth';
 import Link from 'next/link';
 import OtpInput from 'react-otp-input';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Particle from '../components/particle';
 import { getCookie } from 'cookies-next';
@@ -31,9 +31,8 @@ export default function Register() {
       toast.success(data.message);
 
       let selected_plan = getCookie('selected_plan');
-      console.log(selected_plan)
-      
       router.push(`plans/${selected_plan}`);
+
     }).catch(({ response }: any) => {
       setErrors(response?.data);
       setLoading(false);
@@ -115,7 +114,6 @@ export default function Register() {
 
 export async function getServerSideProps({ req, res }: any) {
     let token = req.cookies.token;
-    let selected_plan = req.cookies.selected_plan;
 
     if(token)
     {
@@ -127,15 +125,7 @@ export async function getServerSideProps({ req, res }: any) {
         
         const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
-        if(email_verified_at && !active_plan?.length){
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: `/plans/${selected_plan}`
-                },
-            };
-        }
-        else if(active_plan?.length && email_verified_at && !date_of_birth)
+        if(active_plan?.length && email_verified_at && !date_of_birth)
         {
             return {
                 redirect: {

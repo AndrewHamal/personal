@@ -1,9 +1,4 @@
 import Head from 'next/head'
-import { useState } from 'react'
-import { login } from './api/auth';
-import { setCookie } from 'cookies-next';
-import { toast } from 'react-toastify';
-import Register from './register';
 import Plans from './plans';
 
 export default function Home() {

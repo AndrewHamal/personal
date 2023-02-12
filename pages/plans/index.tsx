@@ -85,7 +85,7 @@ export default function Plans() {
                     </div>
 
                     <div className='d-flex flex-wrap pt-5 px-[30px] w-100 self-end pb-5 btn-div'>
-                        <Link href={`/plans/${selectedPlan}`} className="w-100">
+                        <Link href={`/plan/${selectedPlan}`} className="w-100">
                             <button disabled={selectedPlan === null ? true : false} type='submit' className='btn-primary w-100'>
                                 { !selectedPlan ? 'Select Plan' : 'Subscribe' } 
                             </button>

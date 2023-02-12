@@ -31,7 +31,7 @@ export default function Register() {
       setLoading(false);
       toast.success(data.message);
       console.log(`/plans/${selected_plan}`);
-      router.push(`/plans/${selected_plan}`);
+      router.push(`/plan/${selected_plan}`);
 
     }).catch(({ response }: any) => {
       setErrors(response?.data);

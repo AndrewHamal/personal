@@ -13,8 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return <>
       <ToastContainer />
-      <Suspense fallback={'loading.....'}>
-        <Component {...pageProps} />
-      </Suspense>
+      <Component {...pageProps} />
     </>
 }

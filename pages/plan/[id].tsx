@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import { register, instance, subscription } from '../api/auth';
 import useSWR from 'swr'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import {loadStripe} from '@stripe/stripe-js';
 import {
   CardElement,

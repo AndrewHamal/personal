@@ -22,6 +22,7 @@ export default function Register() {
 
   function handleSubmit(e: any)
   {
+    let selected_plan = getCookie('selected_plan');
     e.preventDefault();
     setLoading(true);
 
@@ -29,8 +30,7 @@ export default function Register() {
     .then(({ data }: any) => {
       setLoading(false);
       toast.success(data.message);
-
-      let selected_plan = getCookie('selected_plan');
+      console.log(`/plans/${selected_plan}`);
       router.push(`/plans/${selected_plan}`);
 
     }).catch(({ response }: any) => {

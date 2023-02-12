@@ -3,7 +3,7 @@ import { Eye, EyeOff, Lock, Mail } from 'react-feather'
 import { useEffect, useState } from 'react'
 import { register, instance } from '../api/auth';
 import useSWR from 'swr'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';

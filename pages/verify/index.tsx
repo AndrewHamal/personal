@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { Eye, EyeOff, Lock, Mail } from 'react-feather'
 import { useEffect, useState } from 'react'
 import { register, resendOtp, verifyOtp } from '../api/auth';
-import Link from 'next/link';
 import OtpInput from 'react-otp-input';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';

@@ -5,10 +5,11 @@ import useSWR from 'swr'
 import Link from 'next/link';
 import Particle from '../components/particle';
 import Skeleton from '../components/skeleton';
-import { setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 
 export default function Plans() {
   let refPlan: any = useRef();
+  let token = getCookie('token');
   const [selectedPlan, setSelectedPlan]: any = useState(null);
   const [selectedFeature, setSelectedFeature] = useState<any>(null);
 
@@ -85,7 +86,7 @@ export default function Plans() {
                     </div>
 
                     <div className='d-flex flex-wrap pt-5 px-[30px] w-100 self-end pb-5 btn-div'>
-                        <Link href={`/plan/${selectedPlan}`} className="w-100">
+                        <Link href={token ? `/plan/${selectedPlan}` : '/register'} className="w-100">
                             <button disabled={selectedPlan === null ? true : false} type='submit' className='btn-primary w-100'>
                                 { !selectedPlan ? 'Select Plan' : 'Subscribe' } 
                             </button>

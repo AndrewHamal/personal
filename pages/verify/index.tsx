@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Particle from '../components/particle';
-import { getCookie, getCookies } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 
 
 export default function Register() {
@@ -126,20 +126,10 @@ export async function getServerSideProps({ req, res }: any) {
         const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
         if(email_verified_at && !active_plan?.length){
-            if(selected_plan)
-            {
-                return {
-                    redirect: {
-                        permanent: false,
-                        destination: `/plans/${selected_plan}`
-                    },
-                };
-            }
-
             return {
                 redirect: {
                     permanent: false,
-                    destination: `/plans`
+                    destination: `/plans/${selected_plan}`
                 },
             };
         }

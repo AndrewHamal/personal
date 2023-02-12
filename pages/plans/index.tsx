@@ -107,45 +107,26 @@ export default function Plans() {
   )
 }
 
-// export async function getServerSideProps({ req, res }: any) {
-//     let token = req.cookies.token;
+export async function getServerSideProps({ req, res }: any) {
+    let token = req.cookies.token;
+    let selected_plan = req.cookies.selected_plan;
 
-//     if(token)
-//     {
-//         let path = '/verify';
-//         const data = await axios.get('/info', {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }}
-//         );
-        
-//         const { email_verified_at, active_plan, date_of_birth } = data?.data;
+    if(token)
+    {
+        if(selected_plan)
+        {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: `/plans/${selected_plan}`
+                },
+            };
+        }
+    }
 
-//         if(active_plan?.length && email_verified_at && !date_of_birth)
-//         {
-//             return {
-//                 redirect: {
-//                     permanent: false,
-//                     destination: '/success'
-//                 },
-//             };
-//         }
-//         else if(active_plan?.length && date_of_birth && email_verified_at)
-//         {
-//             {
-//                 return {
-//                     redirect: {
-//                         permanent: false,
-//                         destination: '/profile-complete'
-//                     },
-//                 };
-//             }
-//         }
-//     }
-
-//     return {
-//       props: {
+    return {
+      props: {
   
-//       },
-//     }
-// }
+      },
+    }
+}

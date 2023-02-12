@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Eye, EyeOff, Lock, Mail } from 'react-feather'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { register, resendOtp, verifyOtp } from '../api/auth';
 import Link from 'next/link';
 import OtpInput from 'react-otp-input';
@@ -19,6 +19,11 @@ export default function Register() {
   const [sendingOtp, setSendingOtp] = useState(false);
 
   const handleChange = (otp: any) => setOpt(otp);
+
+  useEffect(() => {
+    let selected_plan = getCookie('selected_plan');
+    console.log(selected_plan);
+  })
 
   function handleSubmit(e: any)
   {
@@ -120,6 +125,7 @@ export default function Register() {
 
 export async function getServerSideProps({ req, res }: any) {
     let token = req.cookies.token;
+    let selected_plan = req.cookies.selected_plan;
 
     if(token)
     {
@@ -132,10 +138,20 @@ export async function getServerSideProps({ req, res }: any) {
         const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
         if(email_verified_at && !active_plan?.length){
+            if(selected_plan)
+            {
+                return {
+                    redirect: {
+                        permanent: false,
+                        destination: `/plans/${selected_plan}`
+                    },
+                };
+            }
+            
             return {
                 redirect: {
                     permanent: false,
-                    destination: '/plans'
+                    destination: `/plans`
                 },
             };
         }

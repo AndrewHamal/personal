@@ -155,12 +155,29 @@ a {
 
 @media only screen and (max-width: 600px){
 
-  .btn-div 
+  .card-body .btn-div 
   {
-    position: absolute; 
-    bottom: 10%;
+    position: fixed; 
+    bottom: 20px;
     z-index: 9999;
+    left: 30px;
+    right: 30px;
+    width: auto!important;
+    padding: 0!important;
   }
+
+  .card-top {
+    padding: 18px!important;
+  }
+
+  .card-body .btn-div.without-secline  {
+    bottom: 56px;
+  }
+
+  form:not(.stripe) {
+    padding: 30px!important;
+  }
+  
   
 	.bg-main .svg {
     display: none!important;
@@ -194,7 +211,7 @@ a {
   }
 
   .card-body {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 75px);
   }
 
   .bg-main .mt-5 {

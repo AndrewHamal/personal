@@ -39,7 +39,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='container-fluid'>
+      <div className='container-fluid' id="login">
         <div className='bg-main h-[100vh] d-flex relative'>
           <div className='w-[430px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
             <div className='mt-5'>
@@ -91,12 +91,12 @@ export default function Login() {
                     </div>
 
                     
-                    <div className='pt-5 pb-3 w-100 btn-div text-center'>
+                    <div className='pt-5 pb-3 w-100 btn-div text-center self-end'>
                       <button disabled={loading} type='submit' className='btn-primary w-100'>
                         { loading ? 'Loading...' : 'Login' } 
                       </button>
 
-                      <p className='text-[13px] pt-3 mb-0'><span className='text-[#030128]/[]'> Not a member?</span> <Link href={"register"}><span className='text-[#586FF3]'>Sign Up</span></Link></p>
+                      <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Not a member?</span> <Link href={"register"}><span className='text-[#586FF3]'>Sign Up</span></Link></p>
                     </div>
                   </div>
                 </form>

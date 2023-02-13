@@ -17,7 +17,7 @@ export function login(form: any)
 
 export function resendOtp()
 {
-    return axios.post('resend-otp')
+    return axiosInstance.post('resend-otp')
 }
 
 export function verifyOtp(otp: any)

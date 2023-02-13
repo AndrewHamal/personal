@@ -40,7 +40,7 @@ export default function Plans() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <div className="container-fluid">
+        <div className="container-fluid" id="plans">
             <div className='bg-main h-[100vh] d-flex relative'>
             <div className='w-[370px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
             <div>
@@ -85,7 +85,7 @@ export default function Plans() {
 
                     </div>
 
-                    <div className='d-flex flex-wrap pt-5 px-[30px] w-100 self-end pb-5 btn-div'>
+                    <div className='d-flex flex-wrap pt-5 px-[30px] w-100 self-end pb-5 btn-div without-secline'>
                         <Link href={token ? `/plan/${selectedPlan}` : '/register'} className="w-100">
                             <button disabled={selectedPlan === null ? true : false} type='submit' className='btn-primary w-100'>
                                 { !selectedPlan ? 'Select Plan' : 'Subscribe' } 

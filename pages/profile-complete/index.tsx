@@ -8,7 +8,7 @@ import Particle from '../components/particle';
 export default function Success() {
   return (
     <>
-        <div className="container-fluid">
+        <div className="container-fluid" id="profile-complete">
             <div className='bg-main h-[100vh] d-flex relative'>
                 <div className='w-[360px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
                 <div className='mt-5'>

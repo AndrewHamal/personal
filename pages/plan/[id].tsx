@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { register, instance, subscription } from '../api/auth';
 import useSWR from 'swr'
 import { useRouter } from 'next/navigation';
+import { useRouter as mainRouter } from 'next/router';
 import {loadStripe} from '@stripe/stripe-js';
 import {
   CardElement,
@@ -21,7 +22,7 @@ const CheckoutForm = ({ intent }: any) => {
 
     const [loading, setLoading] = useState(false);
 
-    const { query } = useRouter();
+    const { query } = mainRouter();
   
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -51,13 +52,16 @@ const CheckoutForm = ({ intent }: any) => {
     };
   
     return (
-      <form onSubmit={handleSubmit}>
-        <div className='bg-[#fff] p-3 rounded-[10px] mb-4'>
+      <form onSubmit={handleSubmit} className="stripe">
+        <div className='bg-[#fff] p-3 rounded-[10px] mt-3 mb-4'>
             <CardElement />
         </div>
-        <button className='btn-primary w-100 mt-5 mb-4' type="submit" disabled={!stripe || !elements}>
-          {loading ? 'Loading...' : 'Pay'}
-        </button>
+
+        <div className='btn-div without-secline'>
+            <button className='btn-primary w-100 mt-5 mb-4' type="submit" disabled={!stripe || !elements}>
+            {loading ? 'Loading...' : 'Pay'}
+            </button>
+        </div>
       </form>
     );
   };
@@ -67,7 +71,8 @@ const stripePromise = loadStripe('pk_test_51MRuPFJloZqbdR1uUvOKMgECphmJ2kL5NVzwu
 
 export default function Plan() {
   let refPlan: any = useRef();
-  const { query }: any = useRouter();
+  const router = useRouter();
+  const { query }: any = mainRouter();
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedFeature, setSelectedFeature] = useState<any>(null);
 
@@ -83,7 +88,15 @@ export default function Plan() {
             refPlan?.current?.click()
         }, 50)
     };
-  }, [query?.id, data])
+
+    if(errorIntent && errorIntent?.data?.message === 'email_not_verified')
+    {
+        toast.error(errorIntent?.data?.message);
+        setTimeout(() => {
+            router.push('/verify');
+        }, 500);
+    }
+  }, [query?.id, data, errorIntent])
 
   return (
     <>
@@ -98,7 +111,7 @@ export default function Plan() {
         <div className='bg-main h-[100vh] d-flex relative'>
             <div className='w-[370px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
             <div>
-                <div className="card-body no-header bg-[#F1F1F1] rounded-[20px] h-[80vh] d-flex flex-wrap content-space-between">
+                <div className="card-body no-header bg-[#F1F1F1] rounded-[20px] h-[80vh] content-space-between">
     
                     <div className='z-[0]'>
                         <img src="/img/plan.svg" className='absolute left-0 w-[100%] right-0 rounded-t-[20px]' alt="" />

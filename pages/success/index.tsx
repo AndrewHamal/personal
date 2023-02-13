@@ -54,11 +54,13 @@ export default function Success() {
                                 <p className='text-[12px] pt-[10px] text-[#030128]/[.6]'>You have successfully added & verified your account</p>
                             </div>
 
-                        <Link href={'/profile-detail'} className="relative z-[9999]">
-                            <button type='submit' className='btn-primary mt-5 w-100'>
-                                { loading ? 'Loading...' : 'Customise Profile' } 
-                            </button>
-                        </Link>
+                            <div className='btn-div without-secline'>
+                                <Link href={'/profile-detail'} className="relative z-[9999]">
+                                    <button type='submit' className='btn-primary mt-5 w-100'>
+                                        { loading ? 'Loading...' : 'Customise Profile' } 
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </form>
                 </div>

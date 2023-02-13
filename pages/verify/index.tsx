@@ -89,7 +89,7 @@ export default function Register() {
                             </div>
 
 
-                        <div className='w-100 pb-5 text-center'>
+                        <div className='w-100 pb-5 text-center btn-div'>
                             <button disabled={loading} type='submit' className='btn-primary w-100'>
                             { loading ? 'Loading...' : 'Next' } 
                             </button>

@@ -43,7 +43,7 @@ export default function Register() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <div className='container-fluid'>
+        <div className='container-fluid' id="register">
             <div className='bg-main h-[100vh] d-flex relative'>
                 <div className='w-[430px] form-outer my-auto ml-auto mr-[130px] relative z-[999]'>
                 <div className='mt-5'>
@@ -99,7 +99,7 @@ export default function Register() {
                                         { loading ? 'Loading...' : 'Next' } 
                                     </button>
 
-                                    <p className='text-[13px] pt-3 mb-0'><span className='text-[#030128]/[]'> Already a member?</span> <Link href={"login"}><span className='text-[#586FF3]'>Sign In</span></Link></p>
+                                    <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Already a member?</span> <Link href={"login"}><span className='text-[#586FF3]'>Sign In</span></Link></p>
                                 </div>
                             </div>
                         </form>

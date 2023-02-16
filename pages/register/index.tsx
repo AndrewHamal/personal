@@ -63,7 +63,7 @@ export default function Register() {
                                         <div className='my-auto mr-2'>
                                             <Mail color='#6FE830' size={17}/>
                                         </div>
-                                        <input required name='email' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Example@gmail.com' type="text" />
+                                        <input required name='email' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Example@gmail.com' type="email" />
                                         </div>
                                     </div>
 
@@ -78,7 +78,8 @@ export default function Register() {
                                         <div className='my-auto mr-2'>
                                             <Lock color='#1d1d77e3' size={17}/>
                                         </div>
-                                        <input required name='password' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Password' type={visible} />
+                                        <input required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&]).{8,}" title="Must contain at least one number and one uppercase and one special character and lowercase letter, and at least 8 or more characters" name='password' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Password' type={visible} />
+                                        
                                         {
                                             visible === 'password' ?
                                             <Eye onClick={() => visible === 'password' ? setVisible('text') : setVisible('password')} color='#00000033' size={19}/>

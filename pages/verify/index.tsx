@@ -29,8 +29,11 @@ export default function Register() {
     .then(({ data }: any) => {
       setLoading(false);
       toast.success(data.message);
-      console.log(`/plans/${selected_plan}`);
-      router.push(`/plan/${selected_plan}`);
+    
+      if(selected_plan != '1')
+        return router.push(`/plan/${selected_plan}`);
+        
+      router.push('/success');
 
     }).catch(({ response }: any) => {
       setErrors(response?.data);

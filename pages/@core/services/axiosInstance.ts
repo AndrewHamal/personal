@@ -33,10 +33,10 @@ axiosInstance.interceptors.response.use(
     }
 
     if (!error?.response?.status) {
-      return Promise.reject(error.response);
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error?.response);
+    return Promise.reject(error);
   }
 );
 

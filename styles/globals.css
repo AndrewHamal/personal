@@ -306,3 +306,20 @@ a {
   border: 1px solid #6FE830;
   border-radius: 10px;
 }
+
+.autocomplete-select div {
+  border: unset!important;
+  font-size: 13px;
+  box-shadow: unset!important;
+  /* padding: 0!important; */
+}
+
+.autocomplete-select svg{
+  width: 15px;
+}
+
+.autocomplete-select div:focus , .autocomplete-select div:focus-visible *, .autocomplete-select div:hover *{
+  outline: unset!important;
+  border: unset!important;
+  box-shadow: unset!important;
+}

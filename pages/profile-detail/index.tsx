@@ -1,16 +1,19 @@
 import Head from 'next/head'
-import { Calendar, Eye, EyeOff, File, Lock, Mail, Map, MapPin, Phone, Plus, Shield, User } from 'react-feather'
-import { useCallback, useEffect, useState } from 'react'
-import { register, instance, userUpdate } from '../api/auth';
-import useSWR from 'swr'
+import { Calendar, File, Map, MapPin, Phone, Plus} from 'react-feather'
+import { useState } from 'react'
+import { userUpdate } from '../api/auth';
 import { useRouter } from 'next/router';
+
 import axios from 'axios';
 import Particle from '../components/particle';
+import GooglePlacesAutocomplete, { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
 
 export default function Register() {
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
+  const [location, setLocation]: any  = useState(null);
   const [previewImg, setPreviewImg]: any = useState(null);
+  
 
   const router = useRouter();
 
@@ -19,6 +22,16 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     let form = new FormData(e.target);
+
+    if(location)
+    {
+        form.append('city', location.value.city);
+        form.append('country', location.value.country);
+        form.append('state', location.value.state);
+        form.append('lat', location.value.lat);
+        form.append('lon', location.value.long);
+        form.append('whole_address', location.value.whole_location);
+    }
 
     userUpdate(form)
     .then(({ data }: any) => {
@@ -39,6 +52,61 @@ export default function Register() {
        setPreviewImg(URL.createObjectURL(file));
     }
   }
+
+  const getLocationData = (location: any) => {
+    if (location) {
+      const {
+        value: { place_id },
+      } = location;
+
+      return (async () => {
+        if (!place_id) return;
+
+        const results = await geocodeByPlaceId(place_id);
+        if (!results) {
+          return;
+        }
+
+        const latLong = await getLatLng(results[0]);
+        const { address_components, formatted_address } = results[0];
+
+        let city, state, country, postalCode;
+        for (let i = 0; i < address_components.length; i++) {
+          for (let j = 0; j < address_components[i].types.length; j++) {
+            switch (address_components[i].types[j]) {
+              case "locality":
+                city = address_components[i].long_name;
+                break;
+              case "administrative_area_level_1":
+                state = address_components[i].long_name;
+                break;
+              case "country":
+                country = address_components[i].long_name;
+                break;
+              case "postal_code":
+                postalCode = address_components[i].long_name;
+                break;
+              default:
+                break;
+            }
+          }
+        }
+
+        setLocation({
+          ...location,
+          value: {
+            ...location.value,
+            country: country,
+            city: city,
+            state: state,
+            lat: latLong.lat,
+            long: latLong.lng,
+            whole_location: location.label
+          },
+        });
+      })();
+    }
+  };
 
   return (
     <>
@@ -64,8 +132,7 @@ export default function Register() {
 
                             <div className='d-flex border-[#03012826] border-[1px] border-dashed relative w-[100px] h-[100px] bg-white rounded-[10px] text-center m-auto mb-4'>
                                 <img className='absolute rounded-[10px] left-0 right-0 top-0 bottom-0' src={previewImg} alt="" />
-                                
-                                <input onChange={(e) => imgChange(e)} className='absolute opacity-[0] left-0 right-0 top-0 bottom-0' type="file" name="profile_picture" accept='.png,.jpeg,.jpg' id="" />
+                                <input onChange={(e) => imgChange(e)} className='absolute opacity-[0] left-0 right-0 top-0 bottom-0' type="file" name="profile_picture" accept='.png,.jpeg,.jpg' />
 
                                 <div className='m-auto pt-3'>
                                     <Plus className='m-auto' color='#1D1D77'/>
@@ -100,9 +167,32 @@ export default function Register() {
                             {errors?.first_name?.join('\n')}
                         </div>
 
-                        <div className="d-flex gap-3">
+                        <div className="d-flex gap-3 mt-1">
+                            <div className='w-100'>
+                                <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Address</label>
+                                <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] px-[13px] py-[3.78px] rounded-[10px]'>
+                                    <div className='my-auto mr-2 relative z-[99]'>
+                                        <MapPin color='#1d1d77e3' size={17}/>
+                                    </div>
+                                    <div className='w-100 mx-[-10px] autocomplete-select'>
+                                        <GooglePlacesAutocomplete
+                                            autocompletionRequest={{
+                                                componentRestrictions: {
+                                                    country: ['au'],
+                                                }
+                                            }}
+                                            apiKey={'AIzaSyCqwYRMTR5bxU2eKddDySd98om88fYWqyY'}
+                                            selectProps={{
+                                                placeholder: 'Select Location',
+                                                noOptionsMessage: (_: any) => "Enter location...",
+                                                onChange: (e: any) => getLocationData(e)
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div className='mt-2 w-100'>
+                            {/* <div className='mt-2 w-100'>
                                 <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>State</label>
 
                                 <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
@@ -129,8 +219,12 @@ export default function Register() {
                                 </div>
                                 <input required name='address' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='address' type="text" />
                                 </div>
-                            </div>
+                            </div> */}
+                        </div>
 
+                        <div className='text-[12px] text-danger pt-1'>
+                            {errors?.whole_address?.join('\n')}
+                            {console.log(errors)}
                         </div>
 
                         <div className='mt-2'>
@@ -196,53 +290,53 @@ export default function Register() {
   )
 }
 
-export async function getServerSideProps({ req, res }: any) {
-    let token = req.cookies.token;
+// export async function getServerSideProps({ req, res }: any) {
+//     let token = req.cookies.token;
 
-    if(token)
-    {
-        const data = await axios.get('/info', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }}
-        );
+//     if(token)
+//     {
+//         const data = await axios.get('/info', {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }}
+//         );
         
-        const { email_verified_at, active_plan, date_of_birth } = data?.data;
+//         const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
-        if(email_verified_at && active_plan && date_of_birth)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/profile-complete'
-                },
-            };
-        }
+//         if(email_verified_at && active_plan && date_of_birth)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/profile-complete'
+//                 },
+//             };
+//         }
 
-        if(email_verified_at && !active_plan)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/plans'
-                },
-            };
-        }
+//         if(email_verified_at && !active_plan)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/plans'
+//                 },
+//             };
+//         }
 
-        if(!email_verified_at && !active_plan)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/verify'
-                },
-            };
-        }
-    }
+//         if(!email_verified_at && !active_plan)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/verify'
+//                 },
+//             };
+//         }
+//     }
 
-    return {
-      props: {
+//     return {
+//       props: {
   
-      },
-    }
-}
+//       },
+//     }
+// }

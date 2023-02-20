@@ -290,53 +290,53 @@ export default function Register() {
   )
 }
 
-// export async function getServerSideProps({ req, res }: any) {
-//     let token = req.cookies.token;
+export async function getServerSideProps({ req, res }: any) {
+    let token = req.cookies.token;
 
-//     if(token)
-//     {
-//         const data = await axios.get('/info', {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }}
-//         );
+    if(token)
+    {
+        const data = await axios.get('/info', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }}
+        );
         
-//         const { email_verified_at, active_plan, date_of_birth } = data?.data;
+        const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
-//         if(email_verified_at && active_plan && date_of_birth)
-//         {
-//             return {
-//                 redirect: {
-//                     permanent: false,
-//                     destination: '/profile-complete'
-//                 },
-//             };
-//         }
+        if(email_verified_at && active_plan && date_of_birth)
+        {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: '/profile-complete'
+                },
+            };
+        }
 
-//         if(email_verified_at && !active_plan)
-//         {
-//             return {
-//                 redirect: {
-//                     permanent: false,
-//                     destination: '/plans'
-//                 },
-//             };
-//         }
+        if(email_verified_at && !active_plan)
+        {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: '/plans'
+                },
+            };
+        }
 
-//         if(!email_verified_at && !active_plan)
-//         {
-//             return {
-//                 redirect: {
-//                     permanent: false,
-//                     destination: '/verify'
-//                 },
-//             };
-//         }
-//     }
+        if(!email_verified_at && !active_plan)
+        {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: '/verify'
+                },
+            };
+        }
+    }
 
-//     return {
-//       props: {
+    return {
+      props: {
   
-//       },
-//     }
-// }
+      },
+    }
+}

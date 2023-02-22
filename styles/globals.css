@@ -323,3 +323,7 @@ a {
   border: unset!important;
   box-shadow: unset!important;
 }
+
+.icon {
+  vertical-align: baseline;
+}

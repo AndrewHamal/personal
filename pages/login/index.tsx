@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { Eye, EyeOff, Lock, Mail } from 'react-feather';
 import Particle from '../components/particle';
 import Link from 'next/link';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Login() {
   const [visible, setVisible] = useState('password');
@@ -93,7 +94,12 @@ export default function Login() {
                     
                     <div className='pt-5 pb-3 w-100 btn-div text-center self-end'>
                       <button disabled={loading} type='submit' className='btn-primary w-100'>
-                        { loading ? 'Loading...' : 'Login' } 
+                          { loading ?
+                              <>
+                                  <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                              </>
+                              : 'Login' 
+                          } 
                       </button>
 
                       <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Not a member?</span> <Link href={"register"}><span className='text-[#586FF3]'>Sign Up</span></Link></p>

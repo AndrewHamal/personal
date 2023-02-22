@@ -1,14 +1,14 @@
 import Head from 'next/head'
 import { Eye, EyeOff, Lock, Mail } from 'react-feather'
-import { useEffect, useState } from 'react'
-import { register, instance } from '../api/auth';
-import useSWR from 'swr'
+import { useState } from 'react'
+import { register } from '../api/auth';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
 import Particle from '../components/particle';
 import Link from 'next/link';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Register() {
   const router = useRouter();
@@ -92,12 +92,16 @@ export default function Register() {
                                     <div className='text-[12px] text-danger pt-1'>
                                         {errors?.password?.join('\n')}
                                     </div>
-
                                 </div>
 
                                 <div className='pt-5 pb-3 w-100 btn-div text-center'>
                                     <button disabled={loading} type='submit' className='btn-primary w-100'>
-                                        { loading ? 'Loading...' : 'Next' } 
+                                        { loading ?
+                                            <>
+                                                <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                                            </>
+                                            : 'Next' 
+                                        } 
                                     </button>
 
                                     <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Already a member?</span> <Link href={"login"}><span className='text-[#586FF3]'>Sign In</span></Link></p>

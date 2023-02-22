@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import Particle from '../components/particle';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Success() {
   const [visible, setVisible] = useState('password');
@@ -57,7 +58,12 @@ export default function Success() {
                             <div className='btn-div without-secline'>
                                 <Link href={'/profile-detail'} className="relative z-[9999]">
                                     <button type='submit' className='btn-primary mt-5 w-100'>
-                                        { loading ? 'Loading...' : 'Customise Profile' } 
+                                        { loading ?
+                                            <>
+                                                <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                                            </>
+                                            : 'Customise Profile' 
+                                        } 
                                     </button>
                                 </Link>
                             </div>

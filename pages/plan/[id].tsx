@@ -14,6 +14,7 @@ import {
 import { toast } from 'react-toastify';
 import Particle from '../components/particle';
 import Skeleton from '../components/skeleton';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const CheckoutForm = ({ intent }: any) => {
     const router = useRouter();
@@ -59,7 +60,12 @@ const CheckoutForm = ({ intent }: any) => {
 
         <div className='btn-div without-secline'>
             <button className='btn-primary w-100 mt-5 mb-4' type="submit" disabled={!stripe || !elements}>
-            {loading ? 'Loading...' : 'Pay'}
+            { loading ?
+                <>
+                    <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                </>
+                : 'Pay' 
+            } 
             </button>
         </div>
       </form>

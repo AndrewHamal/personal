@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Particle from '../components/particle';
 import { getCookie } from 'cookies-next';
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 export default function Register() {
@@ -94,10 +95,15 @@ export default function Register() {
 
                         <div className='w-100 pb-5 text-center btn-div'>
                             <button disabled={loading} type='submit' className='btn-primary w-100'>
-                            { loading ? 'Loading...' : 'Next' } 
+                            { loading ?
+                                <>
+                                    <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                                </>
+                                : 'Next' 
+                            } 
                             </button>
 
-                            <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Didn’t recieve an email OTP? </span> {sendingOtp ? <span className='text-[#586FF3]' >Sending...</span> : <span onClick={resendOtpHandler} className='text-[#586FF3] cursor-pointer'>Resend</span>}</p>
+                            <p className='text-[12px] pt-3 mb-0'><span className='text-[#030128]/[.6]'> Didn’t recieve an email OTP? </span> {sendingOtp ? <span className='text-[#586FF3]' >  <LoadingOutlined className='my-auto icon mx-1'/> Sending...</span> : <span onClick={resendOtpHandler} className='text-[#586FF3] cursor-pointer'>Resend</span>}</p>
                         </div>
                         </div>
                     </form>

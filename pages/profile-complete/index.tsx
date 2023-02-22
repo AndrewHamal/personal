@@ -1,8 +1,3 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { instance } from '../api/auth';
-import useSWR from 'swr'
-import { useRouter } from 'next/router';
 import Particle from '../components/particle';
 
 export default function Success() {

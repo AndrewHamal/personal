@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Particle from '../components/particle';
 import GooglePlacesAutocomplete, { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Register() {
   const [errors, setErrors] = useState<any>();
@@ -272,7 +273,12 @@ export default function Register() {
 
                             <div className='mt-5 pb-4 w-100'>
                                 <button disabled={loading} type='submit' className='btn-primary w-100'>
-                                    { loading ? 'Loading...' : 'Complete' } 
+                                        { loading ?
+                                            <>
+                                                <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                                            </>
+                                            : 'Complete' 
+                                        } 
                                 </button>
                             </div>
                         </div>

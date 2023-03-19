@@ -1,17 +1,33 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import { login } from '../api/auth';
+import { forgotPassword, login, resetPassword } from '../api/auth';
 import { setCookie } from 'cookies-next';
 import { toast } from 'react-toastify';
 import { Eye, EyeOff, Lock, Mail } from 'react-feather';
 import Particle from '../components/particle';
 import Link from 'next/link';
 import { LoadingOutlined } from '@ant-design/icons';
+import { Box, Modal } from '@mui/material';
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '40%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  p: 4,
+  outline: 'unset'
+};
 
 export default function Login() {
   const [visible, setVisible] = useState('password');
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
+  const [loadingFor, setLoadingFor] = useState(false);
+  const [loadingReset, setLoadingReset] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [modalReset, setModalReset] = useState(false);
 
   function registerUser(e: any)
   {
@@ -28,6 +44,36 @@ export default function Login() {
     }).catch(({ response }: any) => {
       setErrors(response?.data?.errors);
       setLoading(false);
+    })
+  }
+
+  function onForgotPass(e: any) {
+    e.preventDefault();
+    setLoadingFor(true);
+    let form = new FormData(e.target);
+    forgotPassword(form)
+    .then(res => {
+      setModal(false);
+      setModalReset(true);
+      setLoadingFor(false);
+      toast.success(res.data.message);
+    }).catch(err => {
+      setLoadingFor(false);
+    })
+  }
+
+  function onResetPass(e: any) {
+    e.preventDefault();
+    setLoadingReset(true);
+    let form = new FormData(e.target);
+    resetPassword(form)
+    .then(res => {
+      toast.success(res.data.message);
+      setModalReset(false);
+      setLoadingReset(false);
+    }).catch(err => {
+      toast.error(err.response.data.message);
+      setLoadingReset(false);
     })
   }
 
@@ -61,7 +107,7 @@ export default function Login() {
                           <div className='my-auto mr-2'>
                             <Mail color='#6FE830' size={17}/>
                           </div>
-                          <input required name='email' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Example@gmail.com' type="text" />
+                          <input required name='email' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Example@gmail.com' type="email" />
                         </div>
                       </div>
 
@@ -85,6 +131,7 @@ export default function Login() {
             
                         </div>
                       </div>
+                      <div onClick={() =>  setModal(true)} className='mt-2 text-right text-[14px] cursor-pointer'><small>Forgot Password?</small></div>
 
                       <div className='text-[12px] text-danger pt-1'>
                         {errors?.password?.join('\n')}
@@ -112,6 +159,83 @@ export default function Login() {
           </div>
 
           <Particle/>
+
+          <Modal
+            open={modal}
+            onClose={(e) => setModal(false)}
+            aria-labelledby="parent-modal-title"
+            aria-describedby="parent-modal-description"
+          >
+            <Box sx={style}>
+              <form onSubmit={onForgotPass}>
+                <h4 id="parent-modal-title">Forgot Password</h4>
+                <div className='pt-3 w-100'>
+                  <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Email</label>
+
+                  <div className='w-100 d-flex form-gr border-[1px] border-[#6FE830] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                      <Mail color='#6FE830' size={17}/>
+                    </div>
+                    <input required name='email' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Example@gmail.com' type="email" />
+                  </div>
+                </div>
+
+                <button disabled={loading} type='submit' className='btn-primary mt-4 w-100'>
+                    { loadingFor ?
+                        <>
+                            <LoadingOutlined className='my-auto icon mr-2'/> 
+                        </>
+                        : 'Send' 
+                    } 
+                </button>
+              </form>
+
+            </Box>
+          </Modal>
+
+          <Modal
+            open={modalReset}
+            onClose={(e) => setModalReset(false)}
+            aria-labelledby="parent-modal-title"
+            aria-describedby="parent-modal-description"
+          >
+            <Box sx={style}>
+              <form onSubmit={onResetPass}>
+                <h4 id="parent-modal-title">Reset Password</h4>
+                <div className='pt-3 w-100'>
+                  <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Otp Code</label>
+
+                  <div className='w-100 d-flex form-gr border-[1px] border-[#6FE830] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                      <Mail color='#6FE830' size={17}/>
+                    </div>
+                    <input required name='code' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='1234' type="text" />
+                  </div>
+                </div>
+
+                <div className='pt-3 w-100'>
+                  <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Password</label>
+
+                  <div className='w-100 d-flex form-gr border-[1px] border-[#6FE830] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                      <Mail color='#6FE830' size={17}/>
+                    </div>
+                    <input required name='password' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='*********' type="password" />
+                  </div>
+                </div>
+
+                <button disabled={loading} type='submit' className='btn-primary mt-4 w-100'>
+                    { loadingReset ?
+                        <>
+                            <LoadingOutlined className='my-auto icon mr-2'/> 
+                        </>
+                        : 'Reset Password' 
+                    } 
+                </button>
+              </form>
+
+            </Box>
+          </Modal>
         </div>
       </div>
     </>

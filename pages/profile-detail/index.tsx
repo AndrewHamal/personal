@@ -225,7 +225,6 @@ export default function Register() {
 
                         <div className='text-[12px] text-danger pt-1'>
                             {errors?.whole_address?.join('\n')}
-                            {console.log(errors)}
                         </div>
 
                         <div className='mt-2'>

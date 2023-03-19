@@ -15,6 +15,16 @@ export function login(form: any)
     return axios.post('login', form)
 }
 
+export function forgotPassword(formData: any)
+{
+    return axios.post('forgot-password', formData)
+}
+
+export function resetPassword(formData: any)
+{
+    return axios.post('reset-password', formData)
+}
+
 export function resendOtp()
 {
     return axiosInstance.post('resend-otp')

@@ -38,7 +38,7 @@ export default function Register() {
     .then(({ data }: any) => {
       setErrors(null);
       setLoading(false);
-      router.push('/profile-complete')
+    //   router.push('/profile-complete')
     }).catch(({ response }: any) => {
       setErrors(response?.data?.errors);
       setLoading(false);

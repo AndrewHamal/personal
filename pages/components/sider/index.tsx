@@ -1,6 +1,5 @@
 import { ArrowLeftOutlined, CloseOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import SiderBody from "./siderBody";
 import SiderHeader from "./siderheader";
 
@@ -28,17 +27,11 @@ const Texts: any = {
 };
 
 export default function Sider({ onClose, children }: SiderProps) {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [title, setTitle] = useState<any>("Sign up");
   const [text, setText] = useState(
     "It will only take a few minutes to sign up "
   );
-  useEffect(() => {
-    return () => {
-      navigate("/");
-    };
-  }, []);
+
 
   useEffect(() => {
     setTitle(Titles[location.pathname] ?? "");
@@ -49,9 +42,7 @@ export default function Sider({ onClose, children }: SiderProps) {
     };
   }, [location.pathname]);
 
-  const onBack = () => {
-    navigate(-1);
-  };
+
 
   return (
     <div
@@ -66,7 +57,7 @@ export default function Sider({ onClose, children }: SiderProps) {
               <CloseOutlined />
             </button>
           ) : (
-            <button onClick={onBack}>
+            <button>
               <ArrowLeftOutlined />
             </button>
           )}

@@ -93,6 +93,14 @@ body {
   overflow-y: auto
 }
 
+.policy * {
+  font-family: 'Montserrat', sans-serif!important;
+}
+
+.policy h6 {
+  font-weight: 600!important;
+}
+
 .container-fluid {
   max-width: 2000px;
   padding: 0 !important;

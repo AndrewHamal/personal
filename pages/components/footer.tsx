@@ -1,7 +1,6 @@
 import { FacebookOutlined, InstagramOutlined, MailOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (

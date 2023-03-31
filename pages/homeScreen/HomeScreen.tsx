@@ -367,18 +367,7 @@ const HomeScreen = ({ setShowSider }: any) => {
       </div>
 
       <div className="h-[20px] bg-[#fff]"></div>
-
-
     </div>
-      <Drawer
-        placement={'left'}
-        closable={false}
-        onClose={() => setOpen(false)}
-        open={open}
-        key={'left'}
-      >
-     
-      </Drawer>
     </>
   );
 };

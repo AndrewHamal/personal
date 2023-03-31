@@ -8,7 +8,6 @@ import Link from 'next/link';
 import axios from 'axios';
 import Particle from '../components/particle';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
 import SiderFooter from '../components/sider/siderBody';
 
 export default function Success({ showSider, setShowSider }: any) {

@@ -51,7 +51,7 @@ export default function Verify({showSider, setShowSider}: any) {
         <form onSubmit={handleSubmit} className="h-100 w-100">
           <div className="form h-100 relative">
             <div className="text-center mb-5">
-              <h1 className="font-[sf] text-[#242331]">Verify email</h1>
+              <h1 className="font-[700] text-[#242331]">Verify email</h1>
               <p className="text-[#1D1D1F]">A unique OTP has been sent yo your email address</p>
             </div>
 

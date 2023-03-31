@@ -352,7 +352,6 @@ a {
   align-items: center;
   text-align: center;
   letter-spacing: 0.28px;
-
   background: linear-gradient(91.79deg, #030128 10.51%, #6FE92F 95.86%), #000000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -482,13 +481,9 @@ a {
 }
 
 #firstScreen h1 {
-  font-family: 'sf';
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 58px;
-  line-height: 60px;
-  /* or 107% */
-
+  line-height: 58px;
   display: flex;
   align-items: center;
   letter-spacing: 0.28px;
@@ -548,14 +543,12 @@ iframe.video{
 }
 
 .nav-item a {
-  font-family: 'Inter';
   color: #030128;
   font-weight: 600;
   font-size: 15px;
 }
 
 nav button {
-  font-family: 'Inter';
   font-weight: 600;
 }
 
@@ -587,7 +580,7 @@ body {
 } 
 
 .accordion p {
-  font-family: 'Inter';
+  font-family: 'Montserrat', sans-serif;
 }
 
 .accordion > div > div > div {

@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="row">
                     <div className="col-md-3">
                         <img src="/img/logo.svg" width={140} alt="" />
-                        <p className="text-[#141516] mt-3 font-[Inter] text-[15px]">Safe & reliable
+                        <p className="text-[#141516] mt-3 text-[15px]">Safe & reliable
                             <br /> co-parenting <br /> management platform</p>
                         <div className="d-flex gap-2">
                             <InstagramOutlined />
@@ -18,7 +18,7 @@ export default function Footer() {
 
                     </div>
                     <div className="col-md-3 mt-2">
-                        <h6 className="font-[Inter] font-[600]">Contact info</h6>
+                        <h6 className="font-[600]">Contact info</h6>
 
                         <div className="d-flex align-items-center gap-2 mt-3">
                             <MailOutlined color="#586FF3"/>
@@ -27,7 +27,7 @@ export default function Footer() {
                     </div>
 
                     <div className="col-md-3 mt-2">
-                        <h6 className="font-[Inter] font-[600]">Support</h6>
+                        <h6 className="font-[600]">Support</h6>
 
                         <div className="d-flex align-items-center gap-2 mt-3">
                             <Link
@@ -44,7 +44,7 @@ export default function Footer() {
 
             </footer>
             <div className="text-center py-3  border-t border-[#C9C9C9]">
-                <p className="font-[Inter] text-[#141516] text-[14px] mb-0">©2022 co-parenting plus, All rights reserved</p>
+                <p className="text-[#141516] text-[14px] mb-0">©2022 co-parenting plus, All rights reserved</p>
             </div>
         </div>
 

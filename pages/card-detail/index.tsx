@@ -90,7 +90,7 @@ export default function CardDetail({ showSider, setShowSider, selectedPlan }: an
     <div className="d-flex justify-content-center relative px-[100px]">
       <div className="relative w-100">
         <div className="text-center my-5">
-          <h1 className="font-[sf] text-[#242331]">Enter card details</h1>
+          <h1 className="font-[700] text-[#242331]">Enter card details</h1>
         </div>
         <Elements stripe={stripePromise}>
           <CheckoutForm showSider={showSider} setShowSider={setShowSider} selectedPlan={selectedPlan} intent={intent} />

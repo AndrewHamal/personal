@@ -106,7 +106,7 @@ export default function ProfileDetail({ showSider, setShowSider }: any) {
 
   return (
     <div>
-        <h1 className="font-[sf] text-[#242331] text-center my-4">Complete Profile</h1>
+        <h1 className="font-[700] text-[#242331] text-center my-4">Complete Profile</h1>
         <form onSubmit={profileUpdate} className='h-100 p-[40px]' encType="multipart/form-data">
             <div className="form h-100 relative">
 

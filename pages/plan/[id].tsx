@@ -24,7 +24,7 @@ export default function Plan({ showSider, setShowSider }: any) {
     <>
       <div className="d-flex flex-column gap-2 relative z-[99] align-items-center px-5">
         <div className="text-center my-5">
-            <h1 className="font-[sf] text-[#242331]">Select your plan</h1>
+            <h1 className="font-[700] text-[#242331]">Select your plan</h1>
         </div>
 
         {!data ? (

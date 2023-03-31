@@ -69,7 +69,7 @@ const HomeScreen = ({ setShowSider }: any) => {
             </Typography>
 
             <button
-              className="px-[35px] py-[13px] font-Inter self-start font-[500] mt-3 rounded-[90px] text-white bg-[#030128]"
+              className="px-[35px] py-[13px]  self-start font-[500] mt-3 rounded-[90px] text-white bg-[#030128]"
               onClick={() => setShowSider({page: 'plan', state: true})}
             >
               Sign up now
@@ -107,7 +107,7 @@ const HomeScreen = ({ setShowSider }: any) => {
         </div>
 
         <div className="my-auto w-100">
-          <div className="text-center w-100 relative green-title leading-[60px] font-[sf]">
+          <div className="text-center w-100 relative green-title leading-[60px]">
             <p>
               We acknowledge and support <br /> the integral role of step parents!
             </p>
@@ -127,7 +127,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   fill="#1D1D77"
                 />
               </svg>
-              <p className="font-[sf-semi] mt-3 text-[#030128] text-[30px] leading-[38px]">
+              <p className="mt-3 font-[600] text-[#030128] text-[30px] leading-[38px]">
                 An all inclusive platform <br /> for co-parents and <br /> blended families that <br />
                 takes away the need for <br /> outside communication
               </p>
@@ -146,7 +146,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   fill="#1D1D77"
                 />
               </svg>
-              <p className="font-[sf-semi] mt-3 text-[#030128] text-[30px] leading-[38px]">
+              <p className="font-[600] mt-3 text-[#030128] text-[30px] leading-[38px]">
                 Provides the ability to send <br /> standardised responses <br /> which
                 encourages short, <br /> succinct and non-emotional <br /> communication
               </p>
@@ -171,7 +171,7 @@ const HomeScreen = ({ setShowSider }: any) => {
 
         <div className="row justify-content-center">
           <div className="col-xs-12 px-[20vw] pb-[40px] pt-[70px]">
-            <h1 className="text-center font-[sf] text-[48px] text-[#000000]">How it works?</h1>
+            <h1 className="text-center font-[700] text-[44px] text-[#000000]">How it works?</h1>
           </div>
         </div>
 
@@ -179,9 +179,9 @@ const HomeScreen = ({ setShowSider }: any) => {
           <div className="d-flex flex-column">
             <div className="text-center mb-[55px] mr-auto">
 
-                <h2 className="text-[#1D1D1F] font-[sf] text-[32px]">Sign up to a free account</h2>
+                <h2 className="text-[#1D1D1F] font-[700] text-[32px]">Sign up to a free account</h2>
                 <div className="d-flex">
-                  <span className="text-[#1D1D1F]">Start using the app instantly. <span role="button" onClick={() => {
+                  <span className="m-auto text-[#1D1D1F]">Start using the app instantly. <span role="button" onClick={() => {
                    setShowSider({page: 'plan', state: true})
                   }} className="text-[#1D1D77]">Sign up now</span> </span>
                 </div>
@@ -196,8 +196,8 @@ const HomeScreen = ({ setShowSider }: any) => {
 
           <div className="d-flex flex-column">
             <div className="mx-auto mb-[55px] text-center">
-              <h2 className="text-[#1D1D1F] font-[sf] text-[32px]">Create journal entries</h2>
-              <span className="text-[#1D1D1F]">Track and view journal entries in the platform</span>
+              <h2 className="text-[#1D1D1F] font-[700] text-[32px]">Create journal entries</h2>
+              <span className="text-[#1D1D1F] m-auto">Track and view journal entries in the platform</span>
             </div>
 
             <div className=" mx-auto overflow-hidden">
@@ -226,7 +226,7 @@ const HomeScreen = ({ setShowSider }: any) => {
         <div className="my-auto">
           <div className="row justify-content-center">
             <div className="col-xs-12 pb-[100px]">
-              <h1 className="text-center font-[sf] text-[48px] text-[#000000]">Select a plan to get started</h1>
+              <h1 className="text-center font-[700] text-[44px] text-[#000000]">Select a plan to get started</h1>
             </div>
           </div>
 
@@ -349,7 +349,7 @@ const HomeScreen = ({ setShowSider }: any) => {
           
           <div className="pt-[90px] justify-content-center">
             <div className="col-xs-12 pb-[70px]">
-              <h1 className="text-center font-[sf] text-[48px] text-[#000000]">FAQs</h1>
+              <h1 className="text-center font-[700] text-[44px] text-[#000000]">FAQs</h1>
             </div>
           </div>
 
@@ -359,7 +359,6 @@ const HomeScreen = ({ setShowSider }: any) => {
                 <Accordion collapsed title={"Question"} text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
                 <Accordion collapsed title={"Question"} text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
                 <Accordion collapsed title={"Question"} text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
-
               </div>
             </div>
           </div>

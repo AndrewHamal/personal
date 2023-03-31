@@ -37,7 +37,7 @@ export default function Register({ setShowSider, showSider }: any) {
           <div className="">
             <div className="w-100">
               <div className="text-center my-5">
-                <h1 className="font-[sf] text-[#242331]">Sign up</h1>
+                <h1 className="font-[700] text-[#242331]">Sign up</h1>
                 <p className="text-[#1D1D1F]">It will only take a few minutes to sign up </p>
               </div>
               <div className="pt-3">

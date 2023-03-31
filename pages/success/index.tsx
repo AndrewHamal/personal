@@ -37,7 +37,7 @@ export default function Success({ showSider, setShowSider }: any) {
             <form className='mt-[-40px] p-[40px]'>
                 <div className="form h-100 relative">
                     <div className='text-center my-5 px-4'>
-                        <h1 className="font-[sf] text-[#242331]">Success</h1>
+                        <h1 className="font-[700] text-[#242331]">Success</h1>
                         <p className='text-[12px] text-[#030128]/[.6]'>Please Download our app from Appstore or Playstore</p>
 
                         <div className='d-flex justify-content-center'>

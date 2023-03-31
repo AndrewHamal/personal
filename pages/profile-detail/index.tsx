@@ -1,22 +1,15 @@
 import Head from 'next/head'
-import { Calendar, File, Map, MapPin, Phone, Plus} from 'react-feather'
+import { Calendar, File, MapPin, Phone, Plus} from 'react-feather'
 import { useState } from 'react'
 import { userUpdate } from '../api/auth';
-import { useRouter } from 'next/router';
-
-import axios from 'axios';
-import Particle from '../components/particle';
 import GooglePlacesAutocomplete, { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
 import { LoadingOutlined } from '@ant-design/icons';
 
-export default function Register() {
+export default function ProfileDetail({ showSider, setShowSider }: any) {
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
   const [location, setLocation]: any  = useState(null);
   const [previewImg, setPreviewImg]: any = useState(null);
-  
-
-  const router = useRouter();
 
   function profileUpdate(e: any)
   {
@@ -36,9 +29,11 @@ export default function Register() {
 
     userUpdate(form)
     .then(({ data }: any) => {
+
       setErrors(null);
       setLoading(false);
-    //   router.push('/profile-complete')
+      setShowSider({...showSider, page: 'success'})
+
     }).catch(({ response }: any) => {
       setErrors(response?.data?.errors);
       setLoading(false);
@@ -108,6 +103,166 @@ export default function Register() {
       })();
     }
   };
+
+  return (
+    <div>
+        <h1 className="font-[sf] text-[#242331] text-center my-4">Complete Profile</h1>
+        <form onSubmit={profileUpdate} className='h-100 p-[40px]' encType="multipart/form-data">
+            <div className="form h-100 relative">
+
+                <div className='d-flex border-[#03012826] border-[1px] border-dashed relative w-[100px] h-[100px] bg-white rounded-[10px] text-center m-auto mb-4'>
+                    <img className='absolute rounded-[10px] left-0 right-0 top-0 bottom-0' src={previewImg} alt="" />
+                    <input onChange={(e) => imgChange(e)} className='absolute opacity-[0] left-0 right-0 top-0 bottom-0' type="file" name="profile_picture" accept='.png,.jpeg,.jpg' />
+
+                    <div className='m-auto pt-3'>
+                        <Plus className='m-auto' color='#1D1D77'/>
+                
+                        <div className='text-center pt-1 leading-[15px]'>
+                            <p className='mb-0 text-[#1D1D77]/[.4] font-[500] text-[13px]'>
+                                Upload
+                            </p>
+                            <div className='font-[300] text-[13px] text-[#1D1D77]/[.4]'> <p>(Optional)</p></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div className='d-flex gap-3 pt-2'>
+                    <div className='w-100'>
+                        <label htmlFor="" className='text-[13px] font-[500] mb-[3px]'>First Name</label>
+
+                        <div className='w-100 d-flex form-gr border-[1px] border-[#6FE830] p-[13px] rounded-[10px]'>
+                        <input required name='first_name' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='John' type="text" />
+                        </div>
+                    </div>
+                    <div className='w-100'>
+                        <label htmlFor="" className='text-[13px] font-[500] mb-[3px]'>Last Name</label>
+
+                        <div className='w-100 d-flex form-gr border-[1px] border-[#6FE830] p-[13px] rounded-[10px]'>
+                        <input required name='last_name' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Doe' type="text" />
+                        </div>
+                    </div>
+                </div>
+
+            <div className='text-[12px] text-danger pt-1'>
+                {errors?.first_name?.join('\n')}
+            </div>
+
+            <div className="d-flex gap-3 mt-1">
+                <div className='w-100'>
+                    <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Address</label>
+                    <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] px-[13px] py-[3.78px] rounded-[10px]'>
+                        <div className='my-auto mr-2 relative z-[99]'>
+                            <MapPin color='#1d1d77e3' size={17}/>
+                        </div>
+                        <div className='w-100 mx-[-10px] autocomplete-select'>
+                            <GooglePlacesAutocomplete
+                                autocompletionRequest={{
+                                    componentRestrictions: {
+                                        country: ['au'],
+                                    }
+                                }}
+                                apiKey={'AIzaSyCqwYRMTR5bxU2eKddDySd98om88fYWqyY'}
+                                selectProps={{
+                                    placeholder: 'Select Location',
+                                    noOptionsMessage: (_: any) => "Enter location...",
+                                    onChange: (e: any) => getLocationData(e)
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* <div className='mt-2 w-100'>
+                    <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>State</label>
+
+                    <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                        <Map color='#1d1d77e3' size={17}/>
+                    </div>
+                    <select name="state" defaultValue={""} className='w-100  focus-visible:outline-none text-[14px]'>
+                        <option disabled value={""}>Select State</option>
+                        {
+                            ['VIC', 'NSW', 'SA', 'QLD', 'TAS', 'WA'].map((res) => (
+                                <option value={res} key={res}>{res}</option>
+                            ))
+                        }
+                    </select>
+                    </div>
+                </div>
+
+                <div className='mt-2 w-100'>
+                    <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Address</label>
+
+                    <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                        <MapPin color='#1d1d77e3' size={17}/>
+                    </div>
+                    <input required name='address' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='address' type="text" />
+                    </div>
+                </div> */}
+            </div>
+
+            <div className='text-[12px] text-danger pt-1'>
+                {errors?.whole_address?.join('\n')}
+            </div>
+
+            <div className='mt-2'>
+                <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Phone</label>
+
+                <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
+                <div className='my-auto mr-2'>
+                    <Phone color='#1d1d77e3' size={17}/>
+                </div>
+                <input required name='phone' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Phone Number' type={"tel"} />
+                </div>
+            </div>
+
+            <div className='d-flex gap-3'>
+                <div className='mt-2 w-100'>
+                    <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Driver License</label>
+
+                    <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                        <File color='#1d1d77e3' size={17}/>
+                    </div>
+                    <input required minLength={11} maxLength={11} name='driver_license' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Driver License' type="text" />
+                    </div>
+                </div>
+
+                <div className='mt-2 w-100'>
+                    <label htmlFor="" className='text-[13px] text-[#030128] font-[500] mb-[3px]'>Date Of Birth</label>
+
+                    <div className='w-100 d-flex bg-white border-[1px] border-[#00000033] p-[13px] rounded-[10px]'>
+                    <div className='my-auto mr-2'>
+                        <Calendar color='#1d1d77e3' size={17}/>
+                    </div>
+                    <input required max={new Date().toLocaleDateString('en-ca')} name='date_of_birth' className='bg-[transparent] w-100 text-[13px] focus-visible:outline-none' placeholder='Date Of Birth' type="date" />
+                    </div>
+                </div>
+            </div>
+
+            <div className='text-[12px] text-danger pt-1'>
+                {errors?.driver_license?.join('\n')}
+            </div>
+
+            <div className='text-[12px] text-danger pt-1'>
+                {errors?.password?.join('\n')}
+            </div>
+
+                <div className='mt-5 pb-4 w-100'>
+                    <button disabled={loading} type='submit' className='btn-primary w-100'>
+                            { loading ?
+                                <>
+                                    <LoadingOutlined className='my-auto icon mr-2'/> Loading...
+                                </>
+                                : 'Complete' 
+                            } 
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+  )
 
   return (
     <>
@@ -288,60 +443,60 @@ export default function Register() {
                 </div>
                 
                 {/* vector  */}
-                <Particle/>
+                {/* <Particle/> */}
             </div>
         </div>
     </>
   )
 }
 
-export async function getServerSideProps({ req, res }: any) {
-    let token = req.cookies.token;
+// export async function getServerSideProps({ req, res }: any) {
+//     let token = req.cookies.token;
 
-    if(token)
-    {
-        const data = await axios.get('/info', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }}
-        );
+//     if(token)
+//     {
+//         const data = await axios.get('/info', {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }}
+//         );
         
-        const { email_verified_at, active_plan, date_of_birth } = data?.data;
+//         const { email_verified_at, active_plan, date_of_birth } = data?.data;
 
-        if(email_verified_at && active_plan && date_of_birth)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/profile-complete'
-                },
-            };
-        }
+//         if(email_verified_at && active_plan && date_of_birth)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/profile-complete'
+//                 },
+//             };
+//         }
 
-        if(email_verified_at && !active_plan)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/plans'
-                },
-            };
-        }
+//         if(email_verified_at && !active_plan)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/plans'
+//                 },
+//             };
+//         }
 
-        if(!email_verified_at && !active_plan)
-        {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: '/verify'
-                },
-            };
-        }
-    }
+//         if(!email_verified_at && !active_plan)
+//         {
+//             return {
+//                 redirect: {
+//                     permanent: false,
+//                     destination: '/verify'
+//                 },
+//             };
+//         }
+//     }
 
-    return {
-      props: {
+//     return {
+//       props: {
   
-      },
-    }
-}
+//       },
+//     }
+// }

@@ -3,7 +3,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import { AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function Accordion({ title, text, collapsed }) {
+export default function Accordion({ title, text, collapsed }: any) {
     return (
       <MuiAccordion>
         <AccordionSummary

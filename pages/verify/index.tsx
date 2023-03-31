@@ -1,21 +1,13 @@
-import Head from "next/head";
-import { Eye, EyeOff, Lock, Mail } from "react-feather";
-import { useEffect, useState } from "react";
-import { register, resendOtp, verifyOtp } from "../api/auth";
+import { useState } from "react";
+import { resendOtp, verifyOtp } from "../api/auth";
 import OtpInput from "react-otp-input";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import axios from "axios";
-import Particle from "../components/particle";
 import { getCookie } from "cookies-next";
 import { LoadingOutlined } from "@ant-design/icons";
-import SiderHeader from "../components/sider/siderheader";
-import { useNavigate } from "react-router-dom";
 import SiderFooter from "../components/sider/siderBody";
 
-export default function Verify() {
-  //   const router = useRouter();
-  const navigate = useNavigate();
+export default function Verify({showSider, setShowSider}: any) {
   const [otp, setOpt] = useState();
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -33,9 +25,9 @@ export default function Verify() {
         setLoading(false);
         toast.success(data.message);
 
-        if (selected_plan != "1") return navigate(`/plan/${selected_plan}`);
+        if (selected_plan != "1") return setShowSider({...showSider, page: 'cardVerify'});
 
-        navigate("/success");
+        setShowSider({...showSider, page: 'complete'})
       })
       .catch(({ response }: any) => {
         setErrors(response?.data);
@@ -58,7 +50,12 @@ export default function Verify() {
       <div className="d-flex align-items-center justify-content-center p-[100px]">
         <form onSubmit={handleSubmit} className="h-100 w-100">
           <div className="form h-100 relative">
-            <div className="otp my-[20px]">
+            <div className="text-center mb-5">
+              <h1 className="font-[sf] text-[#242331]">Verify email</h1>
+              <p className="text-[#1D1D1F]">A unique OTP has been sent yo your email address</p>
+            </div>
+
+            <div className="otp my-[20px] max-w-[300px] m-auto">
               <OtpInput
                 value={otp}
                 onChange={handleChange}
@@ -90,7 +87,7 @@ export default function Verify() {
                 )}
               </button>
 
-              <p className="text-[12px] pt-3 mb-0">
+              <p className="text-[12px] pt-3 mb-4">
                 <span className="text-[#030128]/[.6]">
                   {" "}
                   Didn’t recieve an email OTP?{" "}

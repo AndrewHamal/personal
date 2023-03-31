@@ -1,22 +1,16 @@
-import Head from "next/head";
 import { Eye, EyeOff, Lock, Mail } from "react-feather";
 import { useState } from "react";
 import { register } from "../api/auth";
 import axios from "axios";
 import { setCookie } from "cookies-next";
 import { toast } from "react-toastify";
-import Particle from "../components/particle";
-import Link from "next/link";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
-import Icon from "@ant-design/icons/lib/components/Icon";
-import { useNavigate } from "react-router-dom";
 import SiderFooter from "../components/sider/siderBody";
 
-export default function Register() {
+export default function Register({ setShowSider, showSider }: any) {
   const [visible, setVisible] = useState("password");
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
-  const naviagete = useNavigate();
 
   function registerUser(e: any) {
     e.preventDefault();
@@ -28,7 +22,7 @@ export default function Register() {
         setCookie("token", data.data.token);
         toast.success(data.message);
         setLoading(false);
-        naviagete("/verify");
+        setShowSider({...showSider, page: 'verify'})
       })
       .catch(({ response }: any) => {
         setErrors(response?.data?.errors);
@@ -42,6 +36,10 @@ export default function Register() {
         <form onSubmit={registerUser} className="h-100 w-100">
           <div className="">
             <div className="w-100">
+              <div className="text-center my-5">
+                <h1 className="font-[sf] text-[#242331]">Sign up</h1>
+                <p className="text-[#1D1D1F]">It will only take a few minutes to sign up </p>
+              </div>
               <div className="pt-3">
                 <label htmlFor="" className="text-[13px] font-[500] mb-[3px]">
                   Email
@@ -124,7 +122,7 @@ export default function Register() {
                 <button
                   disabled={loading}
                   type="submit"
-                  className="btn-primary w-100"
+                  className="btn-primary mt-5 w-100"
                 >
                   {loading ? (
                     <>

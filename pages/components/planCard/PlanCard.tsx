@@ -13,27 +13,30 @@ interface PlanCardProps {
 
 export default function PlanCard({ price, title, features, handleClick, id }: PlanCardProps) {
     return (
-        <Card className="m-2 p-2 plan-card">
-            <CardContent>
-                <div className="h-[100px]">
-                    <Typography variant="h1">{price}</Typography>
-                    {title && <Typography variant="h2">{title}</Typography>}
+        <Card className="m-2 px-4 py-[35px] plan-card h-[calc(100%-1rem)]">
+            <CardContent className="h-100 d-flex flex-wrap">
+                <div className="h-[50px]"> 
+                    <p className="font-[sf] text-[40px] leading-[35px] mb-0">{title ? "$" : ''}{price}</p>
+                    {title && <p className="font-[sf-semi]">{title}</p>}
                 </div>
-                <div className="h-[120px] mt-2">
-                    {features && features.map(item => (
-                        <div className="d-flex align-items-center gap-2"><CheckCircleTwoTone twoToneColor="#52c41a" />
+                <div className="mt-5 mb-[29px] w-100">
+                    {features && features.map((item: any, key: number) => (
+                        <div className="d-flex mb-2 align-items-center gap-2" key={key}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M0 12C0 5.39062 5.34375 0 12 0C18.6094 0 24 5.39062 24 12C24 18.6562 18.6094 24 12 24C5.34375 24 0 18.6562 0 12ZM17.3906 9.9375C17.9062 9.42188 17.9062 8.625 17.3906 8.10938C16.875 7.59375 16.0781 7.59375 15.5625 8.10938L10.5 13.1719L8.39062 11.1094C7.875 10.5938 7.07812 10.5938 6.5625 11.1094C6.04688 11.625 6.04688 12.4219 6.5625 12.9375L9.5625 15.9375C10.0781 16.4531 10.875 16.4531 11.3906 15.9375L17.3906 9.9375Z" fill="#6FE92F"/>
+                            </svg>
                             <Typography sx={{
-                                // fontFamily: 'SF Pro Display',
+                                fontFamily: 'sf-semi',
                                 fontStyle: "normal",
                                 fontSeight: 700,
-                                fontSize: "18px",
+                                fontSize: "16px",
                                 lineHeight: "21px",
                                 letterSpacing: "0.18px"
-                            }}>{item}</Typography></div>
+                            }}>{item.description}</Typography></div>
                     ))}
                 </div>
                 <button
-                    className="btn btn-primary bg-dark"
+                    className=" bg-[#030128] mt-auto font-[Inter] text-[15px] font-[500] text-[#F1F1F1] px-3 py-2 rounded-[20px]"
                     onClick={() => handleClick(id)}
                 >
                     Select plan

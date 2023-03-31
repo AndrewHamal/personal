@@ -1,59 +1,32 @@
-import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
-import { register, instance, subscription } from "../api/auth";
 import useSWR from "swr";
-import { useRouter } from "next/navigation";
-import { useRouter as mainRouter } from "next/router";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-import { toast } from "react-toastify";
-import Particle from "../components/particle";
+import { instance } from "../api/auth";
 import Skeleton from "../components/skeleton";
-import { LoadingOutlined } from "@ant-design/icons";
 import SiderFooter from "../components/sider/siderBody";
-import { useNavigate } from "react-router-dom";
+import { getCookie, setCookie } from "cookies-next";
 
-export default function Plan() {
+export default function Plan({ showSider, setShowSider }: any) {
   let refPlan: any = useRef();
-  const navigate = useNavigate();
-  const router = useRouter();
-  const { query }: any = mainRouter();
-  const [selectedPlan, setSelectedPlan] = useState(null);
-  const [selectedFeature, setSelectedFeature] = useState<any>(null);
-
+  let selected_plan = getCookie('selected_plan');
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
   const fetcher = (url: any) => instance(url);
   const { data, error }: any = useSWR("plans", fetcher);
 
-  const { data: intent, error: errorIntent }: any = useSWR(
-    "get-intent",
-    fetcher
-  );
-
   useEffect(() => {
-    if (query?.id) setSelectedPlan(query?.id);
-    if (data) {
-      setTimeout(() => {
-        refPlan?.current?.click();
-      }, 50);
+    if(selected_plan)
+    {
+      setSelectedPlan(selected_plan)
     }
-
-    if (errorIntent && errorIntent?.data?.message === "email_not_verified") {
-      toast.error(errorIntent?.data?.message);
-      setTimeout(() => {
-        // router.push("/verify");
-      }, 500);
-    }
-  }, [query?.id, data, errorIntent]);
+  }, [selected_plan]);
 
   return (
     <>
       <div className="d-flex flex-column gap-2 relative z-[99] align-items-center px-5">
+        <div className="text-center my-5">
+            <h1 className="font-[sf] text-[#242331]">Select your plan</h1>
+        </div>
+
         {!data ? (
           <Skeleton />
         ) : (
@@ -64,18 +37,33 @@ export default function Plan() {
                   ref={selectedPlan == res.id ? refPlan : null}
                   onClick={() => {
                     setSelectedPlan(res.id);
-                    setSelectedFeature(res.features);
+                    setCookie('selected_plan', res.id);
                   }}
                   className={`${
                     selectedPlan == res.id && "selected"
-                  } cursor-pointer bg-[#FFFFFF80] d-flex h-[60px] border-[#03012826] w-100 m-2  border-[1px] rounded-[10px]`}
+                  } cursor-pointer bg-[#FFFFFF80] d-flex min-h-[70px] py-3 shadow w-100 m-2 rounded-[10px]`}
                 >
-                  <div className="m-auto text-center">
-                    <p className="mb-0 text-[#030128] text-[14px] font-[600] capitalize">
-                      {" "}
-                      {res.price === 0 ? "Free" : res.intervel}
-                    </p>
-                    <p className="mb-0 text-[19px] font-[700]">${res.price}</p>
+                  <div className="my-auto px-4 text-center d-flex">
+                    <div className="my-auto">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M0 12C0 5.39062 5.34375 0 12 0C18.6094 0 24 5.39062 24 12C24 18.6562 18.6094 24 12 24C5.34375 24 0 18.6562 0 12ZM17.3906 9.9375C17.9063 9.42187 17.9063 8.625 17.3906 8.10937C16.875 7.59375 16.0781 7.59375 15.5625 8.10937L10.5 13.1719L8.39063 11.1094C7.875 10.5938 7.07813 10.5938 6.5625 11.1094C6.04688 11.625 6.04688 12.4219 6.5625 12.9375L9.5625 15.9375C10.0781 16.4531 10.875 16.4531 11.3906 15.9375L17.3906 9.9375Z" fill="#030128"/>
+                      </svg>
+                    </div>
+
+                    <div className="my-auto ml-6">
+                      <div className="d-flex">
+                        <p className="my-auto text-[19px] font-[700] pr-2">${res.price}</p>
+                        <p className="my-auto text-[#030128] text-[14px] font-[600] capitalize">
+                          {" "}
+                          {res.price === 0 ? " Free" : ' per '+res.intervel}
+                        </p>
+                      </div>
+                      <div>
+                        {res.features.map((res: any, key:number) => (
+                          <p className="w-100 mb-0 text-left text-[#757575]" key={key}>{res.description}</p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,8 +71,8 @@ export default function Plan() {
           ))
         )}
         <SiderFooter>
-          <button disabled={!data} className="btn-primary w-100" onClick={()=>{
-            navigate('/carddetail',{state:{selectedPlan}})
+          <button disabled={!data} className="btn-primary w-100 mt-5" onClick={()=>{
+            setShowSider({...showSider, page: 'register', id: selectedPlan})
           }}>Continue</button>
         </SiderFooter>
       </div>

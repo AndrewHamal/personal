@@ -6,28 +6,20 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { instance, subscription } from "../api/auth";
-import SiderFooter from "../components/sider/siderBody";
 import useSWR from "swr";
-import { useRouter as mainRouter } from "next/router";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(
   "pk_test_51MRuPFJloZqbdR1uUvOKMgECphmJ2kL5NVzwuEaRcb2x3F5QLZSmSRhrkVn779nPKpZGL5P7RkiafILpN8sbnT7O00eSjU0xl3"
 );
 
-const CheckoutForm = ({ selectedPlan,intent }: any) => {
-  const router = useRouter();
+const CheckoutForm = ({ selectedPlan, intent, setShowSider, showSider }: any) => {
   const stripe: any = useStripe();
   const elements = useElements();
-  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-
-  const { query } = mainRouter();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setLoading(true);
@@ -52,17 +44,17 @@ const CheckoutForm = ({ selectedPlan,intent }: any) => {
       subscription(selectedPlan, setupIntent.payment_method).then((res) => {
         toast.error(res.data.message);
         setLoading(false);
-        navigate("/success");
+        setShowSider({...showSider, page: 'complete'})
       });
     }
   };
   return (
     <form onSubmit={handleSubmit} className="stripe">
-      <div className="bg-[#fff] p-3 rounded-[10px] mt-3 mb-[100px]">
+      <div className="bg-[#fff] border-[1px] border-[#00000033] p-3 rounded-[10px] mt-3 mb-[100px]">
         <CardElement />
       </div>
 
-      <div className="btn-div without-secline">
+      <div className="btn-div without-secline mt-5">
         <button
           className="btn-primary w-100 mb-3"
           type="submit"
@@ -81,30 +73,27 @@ const CheckoutForm = ({ selectedPlan,intent }: any) => {
   );
 };
 
-export default function CardDetail() {
+export default function CardDetail({ showSider, setShowSider, selectedPlan }: any) {
   const fetcher = (url: any) => instance(url);
   const { data, error }: any = useSWR("plans", fetcher);
   const [loading, setLoading] = useState(false);
-  const {
-    state: { selectedPlan },
-  } = useLocation();
-  const navigate = useNavigate();
-
   const { data: intent, error: errorIntent }: any = useSWR(
     "get-intent",
     fetcher
   );
 
-  if(!intent){
-    navigate('/register');
-  }
-
+  // if(!intent){
+  //   navigate('/register');
+  // }
 
   return (
     <div className="d-flex justify-content-center relative px-[100px]">
       <div className="relative w-100">
+        <div className="text-center my-5">
+          <h1 className="font-[sf] text-[#242331]">Enter card details</h1>
+        </div>
         <Elements stripe={stripePromise}>
-          <CheckoutForm selectedPlan={selectedPlan} intent={intent} />
+          <CheckoutForm showSider={showSider} setShowSider={setShowSider} selectedPlan={selectedPlan} intent={intent} />
         </Elements>
       </div>
       {/* <SiderFooter>

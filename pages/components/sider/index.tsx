@@ -9,7 +9,7 @@ interface SiderProps {
   children?: JSX.Element;
 }
 
-const Titles = {
+const Titles: any = {
   "/register": "Sign up",
   "/verify": "Verify",
   "/plan": "Select your plan",
@@ -18,7 +18,7 @@ const Titles = {
   "/": "Sign up",
 };
 
-const Texts = {
+const Texts: any = {
   "/register": "It will only take a few minutes to sign up",
   "/verify": "A unique OTP has been sent yo your email address",
   "/plan": "",
@@ -30,7 +30,7 @@ const Texts = {
 export default function Sider({ onClose, children }: SiderProps) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [title, setTitle] = useState("Sign up");
+  const [title, setTitle] = useState<any>("Sign up");
   const [text, setText] = useState(
     "It will only take a few minutes to sign up "
   );

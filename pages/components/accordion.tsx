@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Accordion({ title, text, collapsed }: any) {
     return (
-      <MuiAccordion>
+      <MuiAccordion defaultExpanded={!collapsed} TransitionProps={{ unmountOnExit: true }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

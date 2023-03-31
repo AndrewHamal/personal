@@ -16,7 +16,7 @@ export default function PlanCard({ price, title, features, handleClick, id }: Pl
         <Card className="m-2 px-4 py-[35px] plan-card h-[calc(100%-1rem)]">
             <CardContent className="h-100 d-flex flex-wrap">
                 <div className="h-[50px]"> 
-                    <p className="font-[700] text-[40px] leading-[35px] mb-0">{title ? "$" : ''}{price}</p>
+                    <h6 className="font-[700] text-[36px] leading-[35px] mb-0">{title ? "$" : ''}{price}</h6>
                     {title && <p className="font-[600]">{title}</p>}
                 </div>
                 <div className="mt-5 mb-[29px] w-100">
@@ -36,7 +36,7 @@ export default function PlanCard({ price, title, features, handleClick, id }: Pl
                     ))}
                 </div>
                 <button
-                    className=" bg-[#030128] mt-auto font-[600] text-[15px] font-[500] text-[#F1F1F1] px-3 py-2 rounded-[20px]"
+                    className="bg-[#030128] mt-auto font-[600] text-[15px] font-[400] text-[#F1F1F1] px-[21px] py-2 rounded-[20px]"
                     onClick={() => handleClick(id)}
                 >
                     Select plan

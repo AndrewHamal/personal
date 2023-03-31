@@ -67,16 +67,6 @@
   }
 }
 
-@font-face {
-  font-family: 'sf'; /*a name to be used later*/
-  src: url('/font/sf.ttf') format("opentype"); /*URL to font*/
-}
-
-@font-face {
-  font-family: 'sf-semi'; /*a name to be used later*/
-  src: url('/font/sf-semi.ttf') format("opentype"); /*URL to font*/
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -364,8 +354,6 @@ a {
 
   width: 448px;
   height: 190px;
-
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -431,7 +419,6 @@ a {
 }
 
 .plan-card h1 {
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 44px;
@@ -442,7 +429,6 @@ a {
 }
 
 .plan-card h2 {
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -455,7 +441,6 @@ a {
 }
 
 #features h1 {
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 44px;
@@ -466,7 +451,6 @@ a {
 }
 
 #features h2 {
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -504,7 +488,6 @@ a {
 }
 
 #secondScreen h3 {
-  font-family: 'SF Pro Display';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;

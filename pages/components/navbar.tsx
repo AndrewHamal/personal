@@ -24,7 +24,7 @@ const NavBar = ({ handleClickSignup, isServerRendering = false }: NavBarProps) =
        
     setTimeout(() => {
       let doc: any = document;
-      doc.getElementById(id).scrollIntoView();
+      doc.getElementById(id).scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }, 500)
   }
 
@@ -55,7 +55,8 @@ const NavBar = ({ handleClickSignup, isServerRendering = false }: NavBarProps) =
         </p>
       </Drawer>
 
-      <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-[#F1F1F1] py-2">
+      <nav data-aos="fade-in"
+     data-aos-duration="900" className="navbar navbar-expand-lg fixed-top navbar-light bg-[#F1F1F1] py-2">
         <div className="container">
           <Link className="navbar-brand" href="/">
             <img src="/img/logo.svg" width={180} alt="" />

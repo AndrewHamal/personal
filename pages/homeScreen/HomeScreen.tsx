@@ -11,6 +11,8 @@ import { setCookie } from "cookies-next";
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import "swiper/css";
 import MobileSvg from "../components/Mobile";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const contentStyle: React.CSSProperties = {
   marginTop: '5%',
@@ -37,7 +39,6 @@ const SwiperButtonPrev = ({ children }: any) => {
 
 const HomeScreen = ({ setShowSider }: any) => {
   const { data, error }: any = useSWR('plans', instance);
-  const [open, setOpen] = useState(false);
 
   const handleSelectPlan = (id: number) => {
     if (id) {
@@ -45,12 +46,19 @@ const HomeScreen = ({ setShowSider }: any) => {
         setShowSider({state:true, page: 'register'});
     }
   }
+  useEffect(() => {
+    AOS.init({
+      delay: 7000,
+      duration : 700
+    });
+    AOS.refresh();
+  }, []);
 
   return (
     <>
     <div className="pt-[76px]">
-      <div className=" relative container" id="firstScreen">
-        <div className="" style={{ position: "absolute", top: "10%", right: '-100px' }}>
+      <div className="relative container" id="firstScreen">
+        <div data-aos="zoom-in" style={{ position: "absolute", top: "10%", right: '-100px' }}>
           <svg width="163" height="127" viewBox="0 0 163 127" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M92.792 13.9746L62.5996 30.3761L106.957 112.031L137.15 95.63L92.792 13.9746Z" fill="#6FE92F" />
             <path d="M148.896 55.9213L132.494 25.7289L50.8388 70.0866L67.2402 100.279L148.896 55.9213Z" fill="#6FE92F" />
@@ -60,7 +68,7 @@ const HomeScreen = ({ setShowSider }: any) => {
         </div>
 
         <div className="d-flex h-[730px] w-100">
-          <div className="d-flex my-auto flex-column">
+          <div className="d-flex my-auto flex-column" data-aos="fade-right">
             <img src="/img/logo.svg" width={240} alt="" />
             <Typography className="my-3" variant="h1">Safe & reliable <br/> co-parenting platform</Typography>
             <Typography className="my-3" variant="h2">
@@ -91,13 +99,12 @@ const HomeScreen = ({ setShowSider }: any) => {
             </MobileSvg>
           </div>
         </div>
-
       </div>
 
       <div className="h-[20px] bg-[#fff]"></div>
 
       <div className="container d-flex relative h-[790px] bg-[#FBFBFD]" id="secondScreen">
-        <div style={{ position: "absolute", top: "7%", left: 0 }}>
+        <div  data-aos="zoom-in" style={{ position: "absolute", top: "7%", left: 0 }}>
           <svg width="163" height="127" viewBox="0 0 163 127" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M92.792 13.9746L62.5996 30.3761L106.957 112.031L137.15 95.63L92.792 13.9746Z" fill="#6FE92F" />
             <path d="M148.896 55.9213L132.494 25.7289L50.8388 70.0866L67.2402 100.279L148.896 55.9213Z" fill="#6FE92F" />
@@ -114,7 +121,7 @@ const HomeScreen = ({ setShowSider }: any) => {
           </div>
 
           <div className="d-flex flex-wrap justify-between pt-[100px] max-w-[950px] mx-auto">
-            <div >
+            <div data-aos="fade-right">
               <svg
                 width="74"
                 height="74"
@@ -133,7 +140,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               </p>
 
             </div>
-            <div >
+            <div data-aos="fade-left">
               <svg
                 width="74"
                 height="74"
@@ -159,8 +166,8 @@ const HomeScreen = ({ setShowSider }: any) => {
       <div className="h-[20px] bg-[#fff]"></div>
 
 
-      <div className="container relative h-[650px] overflow-hidden" id="howitworks">
-        <div style={{ position: "absolute", top: "5%", right: "5%" }}>
+      <section className="container relative h-[650px] overflow-hidden" id="howitworks">
+        <div data-aos="zoom-in"  style={{ position: "absolute", top: "5%", right: "5%" }}>
           <svg width="163" height="127" viewBox="0 0 163 127" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M92.792 13.9746L62.5996 30.3761L106.957 112.031L137.15 95.63L92.792 13.9746Z" fill="#6FE92F" />
             <path d="M148.896 55.9213L132.494 25.7289L50.8388 70.0866L67.2402 100.279L148.896 55.9213Z" fill="#6FE92F" />
@@ -176,7 +183,7 @@ const HomeScreen = ({ setShowSider }: any) => {
         </div>
 
         <div className="d-flex flex-wrap h-100 justify-between w-100">
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" data-aos="fade-right">
             <div className="text-center mb-[55px] mr-auto">
 
                 <h2 className="text-[#1D1D1F] font-[700] text-[32px]">Sign up to a free account</h2>
@@ -194,7 +201,7 @@ const HomeScreen = ({ setShowSider }: any) => {
 
           <div className="bar-middle bg-[#fff] w-[20px]"></div>
 
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" data-aos="fade-left">
             <div className="mx-auto mb-[55px] text-center">
               <h2 className="text-[#1D1D1F] font-[700] text-[32px]">Create journal entries</h2>
               <span className="text-[#1D1D1F] m-auto">Track and view journal entries in the platform</span>
@@ -205,15 +212,15 @@ const HomeScreen = ({ setShowSider }: any) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
 
       <div className="h-[20px] bg-[#fff]"></div>
 
 
-      <div className="relative container bg-[#FBFBFD] w-100 d-flex h-[790px]" id="plans">
+      <section className="relative container w-100 d-flex h-[790px]" id="plans">
 
-        <div style={{ position: "absolute", top: "9%", right: -50 }}>
+        <div data-aos="zoom-in"  style={{ position: "absolute", top: "9%", right: -50 }}>
           <svg width="163" height="127" viewBox="0 0 163 127" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M92.792 13.9746L62.5996 30.3761L106.957 112.031L137.15 95.63L92.792 13.9746Z" fill="#6FE92F" />
             <path d="M148.896 55.9213L132.494 25.7289L50.8388 70.0866L67.2402 100.279L148.896 55.9213Z" fill="#6FE92F" />
@@ -234,7 +241,7 @@ const HomeScreen = ({ setShowSider }: any) => {
           {!data ? <Skeleton /> :
            data?.data.map((res: any, key: number) => (
               <React.Fragment key={key}>
-                <div className="col-xs-12 col-md-4 p-1">
+                <div className="col-xs-12 col-md-4 p-1" data-aos="zoom-in">
                   <PlanCard id={0} price={(res.price === 0 ? 'Free' : res.price)} title={res.price === 0 ? '' : res.intervel} features={res?.features} handleClick={() => handleSelectPlan(res.id)} />
                 </div>
               </React.Fragment>
@@ -242,7 +249,7 @@ const HomeScreen = ({ setShowSider }: any) => {
   
           </div>
         </div>
-      </div>
+      </section>
 
 
       <div className="h-[20px] bg-[#fff]"></div>
@@ -252,7 +259,7 @@ const HomeScreen = ({ setShowSider }: any) => {
 
         <div className="container my-auto">
           <div className="row ">
-            <div className="col-xs-12">
+            <div className="col-xs-12" data-aos="fade-in">
             <Swiper
               // slidesPerView={2}
               centeredSlides={true}

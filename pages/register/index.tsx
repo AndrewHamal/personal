@@ -6,8 +6,10 @@ import { setCookie } from "cookies-next";
 import { toast } from "react-toastify";
 import { CloseOutlined, LoadingOutlined } from "@ant-design/icons";
 import SiderFooter from "../components/sider/siderBody";
+import { useRouter } from "next/router";
 
 export default function Register({ setShowSider, showSider }: any) {
+  const { query } = useRouter();
   const [visible, setVisible] = useState("password");
   const [errors, setErrors] = useState<any>();
   const [loading, setLoading] = useState(false);
@@ -51,6 +53,7 @@ export default function Register({ setShowSider, showSider }: any) {
                   </div>
                   <input
                     required
+                    defaultValue={query.email}
                     name="email"
                     className="bg-[transparent] w-100 text-[13px] focus-visible:outline-none"
                     placeholder="Example@gmail.com"

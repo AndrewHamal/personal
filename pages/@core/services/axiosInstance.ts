@@ -4,6 +4,7 @@ import { deleteCookie, getCookie } from 'cookies-next';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.coparentingplus.com/user'
+  // baseURL: 'http://127.0.0.1:8000/user'
 });
 
 // request interceptor

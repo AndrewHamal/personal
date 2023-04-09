@@ -13,6 +13,8 @@ import "swiper/css";
 import MobileSvg from "../components/Mobile";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const contentStyle: React.CSSProperties = {
   marginTop: '5%',
@@ -38,6 +40,7 @@ const SwiperButtonPrev = ({ children }: any) => {
 };
 
 const HomeScreen = ({ setShowSider }: any) => {
+  const { query } = useRouter();
   const { data, error }: any = useSWR('plans', instance);
 
   const handleSelectPlan = (id: number) => {
@@ -52,7 +55,13 @@ const HomeScreen = ({ setShowSider }: any) => {
       duration : 700
     });
     AOS.refresh();
-  }, []);
+
+    if(query?.screen === 'register'){
+      toast("Please register with given email to accept invitation!");
+      setShowSider({state:true, page: 'plan'});
+    }
+
+  }, [query]);
 
   return (
     <>

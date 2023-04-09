@@ -4,6 +4,7 @@ import axiosInstance from "../@core/services/axiosInstance";
 let token = getCookie('token');
 
 axios.defaults.baseURL = 'https://api.coparentingplus.com/user';
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/user';
 
 export function register(form: any)
 {

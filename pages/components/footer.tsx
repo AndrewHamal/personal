@@ -1,5 +1,4 @@
-import { FacebookOutlined, InstagramOutlined, MailOutlined } from "@ant-design/icons";
-import Link from "next/link";
+import { FacebookOutlined, InstagramOutlined, MailOutlined, MobileOutlined, SkypeOutlined } from "@ant-design/icons";
 import React from "react";
 
 export default function Footer() {
@@ -8,13 +7,9 @@ export default function Footer() {
             <footer className="py-[60px] container">
                 <div className="row">
                     <div className="col-md-3">
-                        <img src="/img/logo.svg" width={140} alt="" />
+                        <img src="/img/logo.svg" className="rounded-full" width={80} alt="" />
                         <p className="text-[#141516] mt-3 text-[15px]">Safe & reliable
-                            <br /> co-parenting <br /> management platform</p>
-                        <div className="d-flex gap-2">
-                            <InstagramOutlined />
-                            <FacebookOutlined />
-                        </div>
+                            <br /> Web/Mobile app  <br /> Developer</p>
 
                     </div>
                     <div className="col-md-3 mt-2">
@@ -22,29 +17,23 @@ export default function Footer() {
 
                         <div className="d-flex align-items-center gap-2 mt-3">
                             <MailOutlined color="#586FF3"/>
-                            <a href="mailto:info@coparentingplus.com" className="text-[#141516] text-[14px] no-underline">info@coparentingplus.com</a>
-                         </div>
-                    </div>
-
-                    <div className="col-md-3 mt-2">
-                        <h6 className="font-[600]">Support</h6>
+                            <a href="mailto:hamalanis1@gmail.com" className="text-[#141516] text-[14px] no-underline">hamalanis1@gmail.com</a>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 mt-3">
+                            <SkypeOutlined color="#586FF3"/>
+                            <a href="https://join.skype.com/invite/kWT7bXEO59x4" className="text-[#141516] text-[14px] no-underline">https://join.skype.com/invite/kWT7bXEO59x4</a>
+                        </div>
 
                         <div className="d-flex align-items-center gap-2 mt-3">
-                            <Link
-                                href="/privacy-policy"
-                                className="text-[#141516] no-underline text-[14px]"
-                            >
-                                Privacy Policy
-                            </Link>
-                         </div>
-                    </div>
-
-        
+                            <MobileOutlined color="#586FF3"/>
+                            <a href="tel:+9779821941408" className="text-[#141516] text-[14px] no-underline">+977 9821941408</a>
+                        </div>
+                    </div>        
                 </div>
 
             </footer>
             <div className="text-center py-3  border-t border-[#C9C9C9]">
-                <p className="text-[#141516] text-[14px] mb-0">©2022 co-parenting plus, All rights reserved</p>
+                <p className="text-[#141516] text-[14px] mb-0">©2023 Anis Hamal, All rights reserved Just Kidding LOL! ❤️</p>
             </div>
         </div>
 

@@ -16,10 +16,10 @@ export default function PlanCard({ price, title, features, handleClick, id }: Pl
         <Card className="m-2 px-4 py-[35px] plan-card h-[calc(100%-1rem)]">
             <CardContent className="h-100 d-flex flex-wrap">
                 <div className="h-[50px]"> 
-                    <h6 className="font-[700] text-[36px] leading-[35px] mb-0">{title ? "$" : ''}{price}</h6>
+                    <h6 className="font-[600] text-[22px] leading-[35px] mb-0">{title ? "$" : ''}{price}</h6>
                     {title && <p className="font-[600]">{title}</p>}
                 </div>
-                <div className="mt-5 mb-[29px] w-100">
+                <div className="mt-1 w-100">
                     {features && features.map((item: any, key: number) => (
                         <div className="d-flex mb-2 align-items-center gap-2" key={key}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -35,12 +35,6 @@ export default function PlanCard({ price, title, features, handleClick, id }: Pl
                             }}>{item.description}</Typography></div>
                     ))}
                 </div>
-                <button
-                    className="bg-[#030128] mt-auto font-[600] text-[15px] font-[400] text-[#F1F1F1] px-[21px] py-2 rounded-[20px]"
-                    onClick={() => handleClick(id)}
-                >
-                    Select plan
-                </button>
             </CardContent>
         </Card>
     )

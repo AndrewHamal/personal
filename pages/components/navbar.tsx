@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
+import { Mail } from "react-feather";
 
 interface NavBarProps {
   handleClickSignup: () => void;
@@ -32,7 +33,7 @@ const NavBar = ({ handleClickSignup, isServerRendering = false }: NavBarProps) =
     <>
       <Drawer
         title={(<Link className="navbar-brand d-flex" href="/">
-        <img src="/img/logo.svg" width={180} alt="" />
+        <img src="/img/logo.png" width={180} alt="" />
         <p className="ml-auto my-auto" onClick={() =>  setOpen(false)}><Close/></p>
       </Link>)}
         placement={'left'}
@@ -56,12 +57,12 @@ const NavBar = ({ handleClickSignup, isServerRendering = false }: NavBarProps) =
       </Drawer>
 
       <nav data-aos="fade-in"
-     data-aos-duration="900" className="navbar navbar-expand-lg fixed-top navbar-light bg-[#F1F1F1] py-2">
+     data-aos-duration="900" className="navbar navbar-expand-lg fixed-top bg-white py-2">
         <div className="container">
-          <Link className="navbar-brand" href="/">
-            <img src="/img/logo.svg" width={180} alt="" />
+          <Link className="navbar-brand d-flex" href="/">
+            <img src="/img/logo.svg" className="rounded-full" width={35} alt="" />
+            <p className="my-auto ml-2 font-[500] text-[#000]/[.7]">Anis Hamal</p>
           </Link>
-
           <button
             className="navbar-toggler"
             type="button"
@@ -78,32 +79,24 @@ const NavBar = ({ handleClickSignup, isServerRendering = false }: NavBarProps) =
           <div className="navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item active m-2">
-                <Link className="nav-link" href="/#howitworks">
-                  How it works <span className="sr-only">(current)</span>
+                <Link className="nav-link" href="/#about-me">
+                  About Me <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li className="nav-item m-2">
-                <a className="nav-link" href="#plans">
-                  Plans
+                <a className="nav-link" href="#portfolio-1">
+                  Portfolio #1
                 </a>
               </li>
               <li className="nav-item m-2">
-                <Link className="nav-link" href="/#features">
-                  Upcoming features
+                <Link className="nav-link" href="/#proficiency">
+                  Proficiency
                 </Link>
               </li>
               <li className="nav-item m-2">
-                <Link className="nav-link" href="/#faqs">
-                  FAQs
+                <Link className="nav-link" href="/#portfolio-2">
+                  Portfolio #2
                 </Link>
-              </li>
-
-              <li className="d-flex">
-                <div className="self-center">
-                  <button className="bg-[#030128] text-white px-4 text-[15px] py-2 rounded-[90px]" onClick={() => handleSignup()}>
-                    Sign up now
-                  </button>
-                </div>
               </li>
             </ul>
           </div>

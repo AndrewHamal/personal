@@ -6,23 +6,20 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
-body, h6 {
-  font-family: 'Montserrat', sans-serif;
+h6{
+  font-family: 'Jost', sans-serif;
 }
 
-html{
+h1 
+{
+  font-family: 'Mulish', sans-serif!important;
+}
+
+html {
   scroll-behavior: smooth !important;
-}
-
-.policy * {
-  font-family: 'Montserrat', sans-serif!important;
-}
-
-.policy h6 {
-  font-weight: 600!important;
 }
 
 .container-fluid {
@@ -34,19 +31,10 @@ html{
 p,
 button,
 div {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Jost', sans-serif!important;
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-}
 
 a {
   color: inherit;
@@ -416,7 +404,7 @@ a {
 }
 
 #firstScreen h2 {
-  font-family: 'Montserrat';
+  font-family: 'Jost';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -465,7 +453,7 @@ iframe.video{
 
 .nav-item a {
   color: #030128;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 15px;
 }
 

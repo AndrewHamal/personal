@@ -18,7 +18,7 @@ export default function Accordion({ title, text,link, collapsed }: any) {
           <Typography>
             {text}
           </Typography>
-          <Link className='no-underline mt-2' href={link}>
+          <Link className='no-underline mt-2' target={"_blank"} href={link}>
             Visit here
           </Link>
         </AccordionDetails>

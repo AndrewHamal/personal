@@ -429,7 +429,9 @@ const HomeScreen = ({ setShowSider }: any) => {
                 <Accordion collapsed={true} title={"God of trek"} link="https://godoftrek.com/" text={"Travel and tourish plan Booking web application. We can preview Admin CMS on Screenshare 😊"} />
                 <Accordion collapsed={true} title={"Admin Coparentingplus"} link="https://admin.coparentingplus.com/admin/login" text={"An all inclusive co-parenting platform aiming to help you safeguard your families future. We can preview all feature on Screenshare 😊"} />
                 <Accordion collapsed={true} title={"Admin Quip TGSM"} link="https://admin.quiptgsm.com/" text={"Live chat with Coach Kyle or his team, and learn how to create engaging and meaningful conversation with woman on dating apps, or over text. We can preview all feature on Screenshare 😊"} />
-                <Accordion collapsed={true} title={"Fabtex"} link="http://fabtex.com/" text={"Fabric Booking Custom wordpress website with image hotspot, fabric seach by color or image feature"} />
+                <Accordion collapsed={true} title={"Fabtex"} link="http://fabtex.com/" text={"Fabric Booking Custom wordpress website theme with image hotspot, fabric seach by color or image feature"} />
+                <Accordion collapsed={true} title={"Saastock"} link="http://saastock.com/" text={"Saastock is a Custom wordpress website theme."} />
+                <Accordion collapsed={true} title={"Revealize"} link="https://revealize.com/" text={"Revealize is a Custom wordpress website theme."} />
               </div>
             </div>
           </div>

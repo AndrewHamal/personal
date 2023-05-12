@@ -383,15 +383,6 @@ const HomeScreen = ({ setShowSider }: any) => {
                 </div>
               </SwiperSlide>
 
-
-              <SwiperSlide>            
-                <div>
-                    <div style={contentStyle}>
-                      <img src="img/.png"></img>
-                    </div>
-                </div>
-              </SwiperSlide>
-
               <div className="d-flex">
                 <SwiperButtonPrev>   
                   <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">

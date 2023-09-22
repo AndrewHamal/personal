@@ -206,7 +206,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Quip TGSM</h2>
             </div>
               
-            <div className="rounded-[30px] mx-auto overflow-hidden">
+            <div className="rounded-[60px] mx-auto overflow-hidden">
               <video 
                   style={{
                     objectFit: 'cover',
@@ -226,7 +226,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*CoParenting Plus</h2>
             </div>
 
-            <div className="rounded-[30px]  mx-auto overflow-hidden">
+            <div className="rounded-[60px]  mx-auto overflow-hidden">
               <video 
                   style={{
                     objectFit: 'cover',
@@ -246,7 +246,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Coveredpress</h2>
             </div>
 
-            <div className="rounded-[30px]  mx-auto overflow-hidden">
+            <div className="rounded-[60px]  mx-auto overflow-hidden">
               <video 
                   style={{
                     objectFit: 'cover',
@@ -264,8 +264,8 @@ const HomeScreen = ({ setShowSider }: any) => {
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Quip V2</h2>
             </div>
 
-            <div className="rounded-[30px]  mx-auto overflow-hidden">
-              <video 
+            <div className="rounded-[60px]  mx-auto overflow-hidden">
+              <video
                   style={{
                     objectFit: 'cover',
                     height: '690px',

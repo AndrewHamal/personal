@@ -206,7 +206,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Quip TGSM</h2>
             </div>
               
-            <div className="rounded-[50px] mx-auto overflow-hidden">
+            <div className="rounded-[40px] mx-auto overflow-hidden">
               <video 
                   style={{
                     objectFit: 'cover',

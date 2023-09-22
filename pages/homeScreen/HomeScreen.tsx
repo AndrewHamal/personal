@@ -113,7 +113,7 @@ const HomeScreen = ({ setShowSider }: any) => {
           <div className="d-flex my-auto flex-column" data-aos="fade-right">
             <Typography className="my-3" variant="h1">Hi, I'm Anis!</Typography>
             <Typography className="my-3" variant="h2">
-              I’m a web 🚀 and mobile app developer 🧱 <br /><br />
+              I’m a mobile app 🚀 and web developer 🧱 <br /><br />
 
               I am a technological visionary based in nepal. <br />
               I am a full-stack engineer who is proficient in industry   leading  technology  <br /> like React(Next JS), React Native, PHP(Laravel), and HTML/CSS

@@ -258,6 +258,24 @@ const HomeScreen = ({ setShowSider }: any) => {
                 </video>
             </div>
           </div>
+
+          <div className="d-flex flex-column" data-aos="fade-left">
+            <div className="mx-auto mb-[35px] text-center">
+              <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Quip V2</h2>
+            </div>
+
+            <div className="rounded-[30px]  mx-auto overflow-hidden">
+              <video 
+                  style={{
+                    objectFit: 'cover',
+                    height: '690px',
+                    width: '320px'
+                  }}
+                controls={false} autoPlay muted loop={true}>
+                    <source src="/videos/quip-v2.mp4" type="video/mp4" />
+                </video>
+            </div>
+          </div>
         </div>
       </section>
 

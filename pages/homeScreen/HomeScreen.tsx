@@ -260,7 +260,7 @@ const HomeScreen = ({ setShowSider }: any) => {
           </div>
 
           <div className="d-flex flex-column" data-aos="fade-left">
-            <div className="mx-auto mb-[35px] text-center">
+            <div className="mx-auto mt-[35px] text-center">
               <h2 className="text-[#1D1D1F] font-[500] text-[22px]">*Quip V2</h2>
             </div>
 

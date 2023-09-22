@@ -116,7 +116,7 @@ const HomeScreen = ({ setShowSider }: any) => {
               I’m a mobile app 🚀 and web developer 🧱 <br /><br />
 
               I am a technological visionary based in nepal. <br />
-              I am a full-stack engineer who is proficient in industry   leading  technology  <br /> like React(Next JS), React Native, PHP(Laravel), and HTML/CSS
+              I am a full-stack engineer who is proficient in industry   leading  technology  <br /> like React Native, React(Next JS), PHP(Laravel), and HTML/CSS
             </Typography>
 
             <button

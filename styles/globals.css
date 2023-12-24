@@ -561,6 +561,32 @@ body {
     display: none!important;
   }
 
+  #portfolio-1 svg {
+    display: none!important;
+  }
+
+  #portfolio-1 .flex-column {
+    width: 100%!important;
+    margin-bottom: 62px;
+  } 
+
+  #proficiency {
+    padding-top: 70px;
+    height: auto!important;
+  }
+
+  #previews img {
+    object-fit: contain!important;
+  }
+
+  #previews .swiper-wrapper div{
+    height: auto!important
+  }
+
+  #portfolio-2 .px-\[100px\]{
+    padding: 0!important;
+  }
+
   #proficiency svg {
     display: none!important;
   }

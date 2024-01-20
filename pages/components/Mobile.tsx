@@ -28,7 +28,7 @@ export default function MobileSvg({ children }: any)
         <path opacity="0.4" fillRule="evenodd" clipRule="evenodd" d="M166.667 19.4167C166.989 19.4167 167.251 19.1555 167.251 18.8333C167.251 18.5112 166.989 18.25 166.667 18.25C166.345 18.25 166.084 18.5112 166.084 18.8333C166.084 19.1555 166.345 19.4167 166.667 19.4167Z" fill="#636F73"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M126.666 20C126.666 18.8954 127.561 18 128.666 18H153.333C154.437 18 155.333 18.8954 155.333 20C155.333 21.1046 154.437 22 153.333 22H128.666C127.561 22 126.666 21.1046 126.666 20Z" fill="#262C2D"/>
 
-        <foreignObject mask="url(#mask0_46_3427)" id="image0_46_3427" x="15" y="0" width="252" height="560">
+        <foreignObject mask="url(#mask0_46_3427)" id="image0_46_3427" x="0" y="0" width="292" height="560">
             {children}
         </foreignObject>
         </svg>

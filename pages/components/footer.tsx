@@ -1,4 +1,4 @@
-import { FacebookOutlined, InstagramOutlined, MailOutlined, MobileOutlined, SkypeOutlined } from "@ant-design/icons";
+5import { FacebookOutlined, InstagramOutlined, MailOutlined, MobileOutlined, SkypeOutlined } from "@ant-design/icons";
 import React from "react";
 
 export default function Footer() {
@@ -33,7 +33,7 @@ export default function Footer() {
 
             </footer>
             <div className="text-center py-3  border-t border-[#C9C9C9]">
-                <p className="text-[#141516] text-[14px] mb-0">©2023 Anis Hamal, All rights reserved Just Kidding LOL! ❤️</p>
+                <p className="text-[#141516] text-[14px] mb-0">©2024 Anis Hamal, All rights reserved Just Kidding LOL! ❤️</p>
             </div>
         </div>
 

@@ -14,19 +14,21 @@ interface PlanCardProps {
 export default function PlanCard({ price, title, features, handleClick, id }: PlanCardProps) {
     return (
         <Card className="m-2 px-4 py-[35px] plan-card h-[calc(100%-1rem)]">
-            <CardContent className="h-100 d-flex flex-wrap">
-                <div className="h-[50px]"> 
+            <CardContent className="flex-wrap h-100 d-flex">
+                <div className="h-[50px]">
                     <h6 className="font-[600] text-[22px] leading-[35px] mb-0">{title ? "$" : ''}{price}</h6>
                     {title && <p className="font-[600]">{title}</p>}
                 </div>
                 <div className="mt-1 w-100">
                     {features && features.map((item: any, key: number) => (
-                        <div className="d-flex mb-2 align-items-center gap-2" key={key}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M0 12C0 5.39062 5.34375 0 12 0C18.6094 0 24 5.39062 24 12C24 18.6562 18.6094 24 12 24C5.34375 24 0 18.6562 0 12ZM17.3906 9.9375C17.9062 9.42188 17.9062 8.625 17.3906 8.10938C16.875 7.59375 16.0781 7.59375 15.5625 8.10938L10.5 13.1719L8.39062 11.1094C7.875 10.5938 7.07812 10.5938 6.5625 11.1094C6.04688 11.625 6.04688 12.4219 6.5625 12.9375L9.5625 15.9375C10.0781 16.4531 10.875 16.4531 11.3906 15.9375L17.3906 9.9375Z" fill="#6FE92F"/>
-                            </svg>
+                        <div className="gap-2 mb-2 d-flex align-items-center" key={key}>
+                            <div style={{ minWidth: '20px', width: '20px', height: '20px' }}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M0 12C0 5.39062 5.34375 0 12 0C18.6094 0 24 5.39062 24 12C24 18.6562 18.6094 24 12 24C5.34375 24 0 18.6562 0 12ZM17.3906 9.9375C17.9062 9.42188 17.9062 8.625 17.3906 8.10938C16.875 7.59375 16.0781 7.59375 15.5625 8.10938L10.5 13.1719L8.39062 11.1094C7.875 10.5938 7.07812 10.5938 6.5625 11.1094C6.04688 11.625 6.04688 12.4219 6.5625 12.9375L9.5625 15.9375C10.0781 16.4531 10.875 16.4531 11.3906 15.9375L17.3906 9.9375Z" fill="#6FE92F" />
+                                </svg>
+                            </div>
                             <Typography sx={{
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Sora-Regular',
                                 fontStyle: "normal",
                                 fontWeight: 500,
                                 fontSize: "16px",

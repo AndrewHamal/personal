@@ -448,6 +448,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                 </video>
               </div>
             </div>
+
             <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
               <h3 className="mb-3 text-blue-500">Brighter Future</h3>
               <div className="">
@@ -458,6 +459,20 @@ const HomeScreen = ({ setShowSider }: any) => {
                   }}
                   controls={false} autoPlay muted loop={true}>
                   <source src="/videos/brighter.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+
+            <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
+              <h3 className="mb-3 text-blue-500">Brighter Future</h3>
+              <div className="">
+                <video
+                  style={{
+                    objectFit: 'contain',
+                    width: '100%'
+                  }}
+                  controls={false} autoPlay muted loop={true}>
+                  <source src="/videos/sales.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

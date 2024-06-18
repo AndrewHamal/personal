@@ -419,6 +419,20 @@ const HomeScreen = ({ setShowSider }: any) => {
                 </video>
               </div>
             </div>
+
+            <div className="d-flex flex-column" data-aos="fade-left">
+              <div className="rounded-[30px] mx-auto overflow-hidden">
+                <video
+                  style={{
+                    objectFit: 'cover',
+                    height: '690px',
+                    width: '330px'
+                  }}
+                  controls={false} autoPlay muted loop={true}>
+                  <source src="/videos/sales.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-wrap justify-between gap-4 mt-20 h-100">
@@ -459,20 +473,6 @@ const HomeScreen = ({ setShowSider }: any) => {
                   }}
                   controls={false} autoPlay muted loop={true}>
                   <source src="/videos/brighter.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Brighter Future</h3>
-              <div className="">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
-                  <source src="/videos/sales.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

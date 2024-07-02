@@ -443,8 +443,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
+                  }} muted loop={true}>
                   <source src="/videos/grihabhumi.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -456,8 +455,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
+                  }} muted loop={true}>
                   <source src="/videos/godawari.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -470,8 +468,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
+                  }} muted loop={true}>
                   <source src="/videos/brighter.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -484,8 +481,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
+                  }} muted loop={true}>
                   <source src="/videos/sfa.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -498,8 +494,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
+                  }} muted loop={true}>
                   <source src="/videos/nyboss.mp4" type="video/mp4" />
                 </video>
               </div>

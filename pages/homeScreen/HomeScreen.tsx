@@ -443,7 +443,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} muted loop={true}>
+                  }} controls={true} muted>
                   <source src="/videos/grihabhumi.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -455,7 +455,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} muted loop={true}>
+                  }} controls={true} muted>
                   <source src="/videos/godawari.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -468,7 +468,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} muted loop={true}>
+                  }} controls={true} muted>
                   <source src="/videos/brighter.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -481,7 +481,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} muted loop={true}>
+                  }} controls={true} muted>
                   <source src="/videos/sfa.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -494,7 +494,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} muted loop={true}>
+                  }} controls={true} muted>
                   <source src="/videos/nyboss.mp4" type="video/mp4" />
                 </video>
               </div>

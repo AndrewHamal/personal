@@ -492,7 +492,7 @@ const HomeScreen = ({ setShowSider }: any) => {
             </div>
 
             <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Sales Force Automation (SFA)</h3>
+              <h3 className="mb-3 text-blue-500">Nyboss-Job Portal</h3>
               <div className="">
                 <video
                   style={{

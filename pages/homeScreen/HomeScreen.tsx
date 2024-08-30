@@ -429,6 +429,20 @@ const HomeScreen = ({ setShowSider }: any) => {
                     width: '330px'
                   }}
                   controls={false} autoPlay muted loop={true}>
+                  <source src="/videos/emmaus.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+
+            <div className="d-flex flex-column" data-aos="fade-left">
+              <div className="rounded-[30px] mx-auto overflow-hidden">
+                <video
+                  style={{
+                    objectFit: 'cover',
+                    height: '690px',
+                    width: '330px'
+                  }}
+                  controls={false} autoPlay muted loop={true}>
                   <source src="/videos/sales.mp4" type="video/mp4" />
                 </video>
               </div>

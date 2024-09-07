@@ -372,7 +372,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                  muted loop={true}>
                   <source src="/videos/quip tgsm.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -386,7 +386,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                  muted loop={true}>
                   <source src="/videos/coparentingplus.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -400,7 +400,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                  muted loop={true}>
                   <source src="/videos/coveredpress.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -414,7 +414,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                   muted loop={true}>
                   <source src="/videos/quip-v2.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -428,7 +428,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                   muted loop={true}>
                   <source src="/videos/emmaus.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -442,7 +442,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  controls={false} autoPlay muted loop={true}>
+                   muted loop={true}>
                   <source src="/videos/sales.mp4" type="video/mp4" />
                 </video>
               </div>

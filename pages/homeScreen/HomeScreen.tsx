@@ -512,7 +512,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                     objectFit: 'contain',
                     width: '100%'
                   }} controls={true} muted>
-                  <source src="/videos/godawari.mp4" type="video/mp4" />
+                  <source src="https://quiptgsm.com/bg-gd-example.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

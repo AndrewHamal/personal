@@ -456,8 +456,20 @@ const HomeScreen = ({ setShowSider }: any) => {
           </div>
 
           <div className="flex flex-wrap justify-between gap-4 mt-20 h-100">
-          <div className="w-[100%] " data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Grihabhumi</h3>
+            <div className="w-[100%] " data-aos="fade-right">
+              <h3 className="mb-3 text-blue-500">Chptr</h3>
+              <div className="mx-auto overflow-hidden">
+                <video
+                  style={{
+                    objectFit: 'contain',
+                    width: '100%'
+                  }} controls={true} muted>
+                  <source src="https://quiptgsm.com/bg-2.mov" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+            <div className="w-[100%] " data-aos="fade-right">
+              <h3 className="mb-3 text-blue-500">Autarc</h3>
               <div className="mx-auto overflow-hidden">
                 <video
                   style={{
@@ -465,6 +477,18 @@ const HomeScreen = ({ setShowSider }: any) => {
                     width: '100%'
                   }} controls={true} muted>
                   <source src="https://quiptgsm.com/bg-1.mov" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+            <div className="w-[100%] " data-aos="fade-right">
+              <h3 className="mb-3 text-blue-500">Coveredpress</h3>
+              <div className="mx-auto overflow-hidden">
+                <video
+                  style={{
+                    objectFit: 'contain',
+                    width: '100%'
+                  }} controls={true} muted>
+                  <source src="https://quiptgsm.com/bg-3.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

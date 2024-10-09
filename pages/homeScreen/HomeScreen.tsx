@@ -372,7 +372,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
                   muted loop={true}>
                   <source src="/videos/quip tgsm.mp4" type="video/mp4" />
@@ -388,7 +389,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
                   muted loop={true}>
                   <source src="/videos/coparentingplus.mp4" type="video/mp4" />
@@ -404,7 +406,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
                   muted loop={true}>
                   <source src="/videos/coveredpress.mp4" type="video/mp4" />
@@ -420,7 +423,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
                   muted loop={true}>
                   <source src="/videos/quip-v2.mp4" type="video/mp4" />
@@ -436,9 +440,10 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
-                   muted loop={true}>
+                  muted loop={true}>
                   <source src="/videos/emmaus.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -452,7 +457,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                     height: '690px',
                     width: '330px'
                   }}
-                  playsinline
+                  playsInline={true}
+                  preload="metadata"
                   controls={true}
                   muted loop={true}>
                   <source src="/videos/sales.mp4" type="video/mp4" />
@@ -469,7 +475,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="https://quiptgsm.com/bg-2.mov" type="video/mp4" />
                 </video>
               </div>
@@ -481,7 +488,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="https://quiptgsm.com/bg-1.mov" type="video/mp4" />
                 </video>
               </div>
@@ -493,7 +501,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="https://quiptgsm.com/bg-3.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -505,7 +514,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="/videos/grihabhumi.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -517,7 +527,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="https://quiptgsm.com/bg-gd-example.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -530,7 +541,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="/videos/brighter.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -543,7 +555,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="/videos/sfa.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -556,7 +569,8 @@ const HomeScreen = ({ setShowSider }: any) => {
                   style={{
                     objectFit: 'contain',
                     width: '100%'
-                  }} playsinline controls={true} muted>
+                  }} playsInline={true}
+                  preload="metadata" controls={true} muted>
                   <source src="/videos/nyboss.mp4" type="video/mp4" />
                 </video>
               </div>

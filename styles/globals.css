@@ -40,6 +40,12 @@ a {
   text-decoration: unset!important;
 }
 
+
+.bg-slate-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 6 23 / var(--tw-bg-opacity, 1));
+}
+
 body {
   background:
     radial-gradient(circle at top left, rgba(244, 63, 94, 0.08), transparent 30%),

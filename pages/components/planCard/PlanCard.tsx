@@ -1,6 +1,5 @@
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { Card, CardContent, Typography } from "@mui/material";
-import { fontFamily } from "@mui/system";
 import React from "react";
 
 interface PlanCardProps {

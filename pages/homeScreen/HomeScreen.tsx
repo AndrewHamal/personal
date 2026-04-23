@@ -1,791 +1,548 @@
+import React from "react";
+import {
+  ArrowRight,
+  CheckCircle,
+  Code,
+  Cpu,
+  Layers,
+  PlayCircle,
+  Smartphone,
+  Zap,
+} from "react-feather";
 
-import React, { useEffect, useState } from "react";
-import Accordion from "../components/accordion";
-import PlanCard from "../components/planCard/PlanCard";
-import { Carousel, Drawer } from "antd";
-import useSWR from 'swr'
-import Typography from "@mui/material/Typography";
-import { instance } from "../api/auth";
-import Skeleton from "../components/skeleton";
-import { setCookie } from "cookies-next";
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import "swiper/css";
-import MobileSvg from "../components/Mobile";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { Hash } from "react-feather";
+const strengths = [
+  {
+    title: "Product-quality frontend",
+    description:
+      "Clean, responsive interfaces in React and Next.js with careful spacing, hierarchy, and polished execution.",
+    icon: Layers,
+  },
+  {
+    title: "Mobile apps that feel native",
+    description:
+      "React Native builds with smooth flows, reliable state management, and attention to interaction details.",
+    icon: Smartphone,
+  },
+  {
+    title: "Backend-connected features",
+    description:
+      "REST APIs, payments, real-time updates, and the integrations needed to move a product from concept to production.",
+    icon: Zap,
+  },
+  {
+    title: "AI automation & implementation",
+    description:
+      "AI-powered workflows, n8n automations, API integrations, and practical implementations that save teams time and unlock new product capability.",
+    icon: Cpu,
+  },
+];
 
-const contentStyle: React.CSSProperties = {
-  marginTop: '5%',
-  marginBottom: '10%',
-  height: '60vh',
-  color: 'grey',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#FFFFFF',
-  borderRadius: '30px',
-  display: 'flex',
-  overflow: 'hidden'
-};
+const capabilities = [
+  "React",
+  "Next.js",
+  "React Native",
+  "TypeScript",
+  "Laravel",
+  "Tailwind CSS",
+  "Redux / MobX / SWR",
+  "Stripe & payments",
+  "WebSockets",
+  "Zoom SDK",
+  "REST APIs",
+  "Pixel-perfect UI",
+  "AI implementation",
+  "n8n automation",
+  "Workflow automation",
+  "OpenAI integrations",
+  "AI agents",
+];
 
-const SwiperButtonNext = ({ children }: any) => {
-  const swiper = useSwiper();
-  return <p className="mr-auto w-[80px]" onClick={() => swiper.slideNext()}>{children}</p>;
-};
+const aiServices = [
+  "Design and build n8n workflows for lead routing, content ops, CRM sync, and internal operations.",
+  "Implement AI features inside products, from chat and assistants to summarization, extraction, and automation.",
+  "Connect APIs, databases, webhooks, and business tools into reliable AI-powered workflows that teams actually use.",
+];
 
-const SwiperButtonPrev = ({ children }: any) => {
-  const swiper = useSwiper();
-  return <p className="ml-auto w-[80px]" onClick={() => swiper.slidePrev()}>{children}</p>;
-};
+const availabilityModes = ["Remote", "Contract", "Full-time"];
 
-const HomeScreen = ({ setShowSider }: any) => {
-  const { query } = useRouter();
-  const data: any[] = [
-    {
-      price: 'React Native',
-      features: [
-        { description: 'Exp. with MobX, Redux, SWR' },
-        { description: 'Pixel Perfect Design Implementation' },
-        { description: 'Exp. with Zoom SDK, websocket' },
-        { description: 'Exp. with Apple Pay, google Pay, stripe, stripe connect, revenue cat' },
-        { description: 'Exp. with tailwind CSS' },
-        { description: 'Exp. with CLI and expo' },
-      ]
-    },
-    {
-      price: 'React.JS & Next.JS',
-      features: [
-        { description: 'Exp. with SWR, Redux, MobX ' },
-        { description: 'Pixel Perfect Design Implementation' },
-        { description: 'Exp. with Zoom SDK, websocket' },
-        { description: 'Exp. with Apple Pay, google Pay, stripe, stripe connect, revenue cat' },
-        { description: 'Exp. with tailwind CSS, Ant.design, MUI, Chakra UI' }
-      ]
-    },
-    {
-      price: 'PHP (Laravel | Wordpress)',
-      features: [
-        { description: 'Pixel Perfect Design Implementation on Blade' },
-        { description: 'Exp. with Websocket/Broadcasting' },
-        { description: 'Stripe, stripe connect, apple and google pay API' },
-        { description: 'Exp. with tailwind CSS, Ant.design, MUI' },
-        { description: 'RESTFUL API and API services' },
-        { description: 'Exp. with Unit and feature Testing' },
-      ]
-    }
-  ];
+const mobileShowcaseVideos = [
+  {
+    title: "Echo",
+    description: "Mobile-first product flow with polished interactions.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/echo.mp4",
+  },
+  {
+    title: "Quip V2",
+    description: "Refined mobile UX focused on clarity and visual rhythm.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip-v2.mp4",
+  },
+  {
+    title: "Emmaus",
+    description: "Smooth user flows designed for real usage and easy navigation.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/emmaus.mp4",
+  },
+  {
+    title: "Quip TGSM",
+    description: "Mobile interface work with strong product presentation.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip%20tgsm.mp4",
+  },
+  {
+    title: "CoParenting Plus",
+    description: "Feature-rich mobile product with production-focused execution.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coparentingplus.mp4",
+  },
+  {
+    title: "Covered Press",
+    description: "App experience built around content workflows and usability.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coveredpress.mp4",
+  },
+  {
+    title: "Sales",
+    description: "Mobile workflow demo that shows speed, structure, and polish.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/sales.mp4",
+  },
+];
 
-  const handleSelectPlan = (id: number) => {
-    if (id) {
-      setCookie('selected_plan', id);
-      setShowSider({ state: true, page: 'register' });
-    }
-  }
-  useEffect(() => {
-    AOS.init({
-      delay: 7000,
-      duration: 700
-    });
-    AOS.refresh();
+const productWalkthroughVideos = [
+  {
+    title: "Chptr",
+    description: "Large-screen product walkthrough focused on feature depth.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/bg-2.mov",
+  },
+  {
+    title: "Autarc",
+    description: "Demonstration of product flow, navigation, and interface logic.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/bg-1.mov",
+  },
+  {
+    title: "CoveredPress",
+    description: "Web product demo showing real workflow design in action.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/bg-3.mp4",
+  },
+  {
+    title: "Grihabhumi",
+    description: "Marketplace-style product walkthrough with practical UX patterns.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/grihabhumi.mp4",
+  },
+  {
+    title: "GodawariMart",
+    description: "Commerce-focused product experience with operational flows.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/bg-gd-example.mp4",
+  },
+  {
+    title: "Brighter Future",
+    description: "Project showcase highlighting complete user journey thinking.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/brighter.mp4",
+  },
+  {
+    title: "Sales Force Automation",
+    description: "Business workflow tooling built for day-to-day productivity.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/sfa.mp4",
+  },
+  {
+    title: "Nyboss Job Portal",
+    description: "Recruitment-focused product flow with structured information design.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/nyboss.mp4",
+  },
+];
 
-    if (query?.screen === 'register') {
-      toast("Please register with given email to accept invitation!");
-      setShowSider({ state: true, page: 'plan' });
-    }
+const hiringPoints = [
+  "I care about shipping work that looks polished, performs well, and is easy for teams to maintain.",
+  "I can move across web, mobile, and backend-connected product work without losing attention to detail.",
+  "I can also help teams add AI in practical ways, from internal automations to customer-facing AI features.",
+  "I bring a builder mindset: understand the goal, reduce friction, and turn ideas into usable software quickly.",
+];
 
-  }, [query]);
-
+const HomeScreen = () => {
   return (
-    <>
-      <div className="pt-[76px]">
-        <div className="container relative" id="firstScreen">
+    <main className="portfolio-shell overflow-hidden">
+      <section className="portfolio-section relative isolate px-4 pb-14 pt-24 sm:px-6 sm:pb-16 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-32">
+        <div className="portfolio-orb portfolio-orb-left" />
+        <div className="portfolio-orb portfolio-orb-right" />
 
-          <div className="flex justify-center w-[100%]">
-            <div className="w-[100%]" data-aos="fade-right">
-              <h1 className="mt-20 text-center text-8xl">Revealing My Potential<span className="text-[#e4222b] text-[80px] font-[bentago-thin]">.</span></h1>
-
-              <div className="mt-8">
-                <div className="relative flex">
-                  <div className="absolute relative left-[50%] top-[45px] translate-x-[-50%]">
-                    <img src="/img/home.svg" alt="" className="w-[90px]" />
-                    <img src="/img/arr.svg" alt="" className="absolute w-[10px] z-[99] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" />
-                  </div>
-                </div>
-                <img src="/img/working.jpg" className="h-[600px] w-[100%] object-cover" alt="" />
-              </div>
-
-
-              {/* <div className="text-center">
-                <button
-                  className="px-[35px] mx-auto py-[13px] self-start font-[500] mt-5 text-white bg-[#030128]"
-                  onClick={() => setShowSider({ page: 'plan', state: true })}
-                >
-                  HIRE NOW
-                </button>
-              </div> */}
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="relative z-[1]">
+            <div className="section-kicker gap-3">
+              <span className="status-dot" />
+              Available for product engineering and AI automation work
             </div>
 
-            {/* <div className="ml-auto my-auto pr-[55px] first-img"> */}
-            {/* <MobileSvg> */}
-            {/* <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '320px'
-                  }}
-                  controls={false} autoPlay muted loop={true}>
-                  <source src="/videos/ne.mp4" type="video/mp4" />
-                </video> */}
-            {/* </MobileSvg> */}
-            {/* </div> */}
-          </div>
-        </div>
+            <h1 className="mt-6 max-w-4xl text-[clamp(2.9rem,11vw,3.8rem)] font-[Sora-Bold] leading-[0.98] tracking-[-0.05em] text-slate-950">
+              Building digital products and AI workflows ready for production.
+            </h1>
 
-        <div className="bg-[#e3222b]">
-          <div className="container d-flex relative h-[650px]" id="about-me">
-            <div className="my-auto w-100">
-              <div className="text-center w-100 relative leading-[60px]">
-                <h1 className="text-white text-7xl">
-                  What Fules Me
-                </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+              I&apos;m Anis Hamal, a web and mobile developer who also builds AI
+              implementations and n8n automations. I focus on thoughtful UI,
+              production-ready code, and practical systems that companies can
+              trust to ship and scale.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="mailto:hamalanis1@gmail.com"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-slate-800"
+              >
+                Let&apos;s talk
+                <ArrowRight size={16} />
+              </a>
+              <a
+                href="#project-images"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white"
+              >
+                View selected work
+              </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {availabilityModes.map((mode) => (
+                <span key={mode} className="pill-chip pill-chip-muted">
+                  {mode}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="glass-panel rounded-[28px] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Primary focus
+                </p>
+                <p className="mt-3 text-lg font-semibold text-slate-900">
+                  Frontend quality with product thinking
+                </p>
+              </div>
+              <div className="glass-panel rounded-[28px] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Stack
+                </p>
+                <p className="mt-3 text-lg font-semibold text-slate-900">
+                  React, Next.js, React Native, Laravel, AI workflows
+                </p>
+              </div>
+              <div className="glass-panel rounded-[28px] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  Delivery style
+                </p>
+                <p className="mt-3 text-lg font-semibold text-slate-900">
+                  Clear UI, reliable integrations, automation-minded delivery
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-[1]">
+            <div className="hero-visual rounded-[36px] p-4 shadow-[0_35px_90px_rgba(15,23,42,0.12)]">
+              <div className="overflow-hidden rounded-[28px] border border-white/60 bg-white">
+                <img
+                  src="/img/working.jpg"
+                  alt="Illustration of Anis Hamal building software"
+                  className="h-[320px] w-full object-cover object-center sm:h-[420px] lg:h-[520px]"
+                />
               </div>
 
-              <div className="d-flex flex-wrap justify-between pt-4 max-w-[900px] mx-auto">
-                <div data-aos="fade-right d-flex">
-                  <div className="relative">
-                    <div className="absolute opacity-[0.04] top-[10px]">
-                      <Hash size={300} />
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-[24px] bg-slate-950 px-4 py-4 text-white">
+                  <p className="text-xs uppercase tracking-[0.24em] text-slate-300">
+                    What I build
+                  </p>
+                  <p className="mt-3 text-lg font-semibold">
+                    Web apps, mobile apps, AI workflows, and polished product interfaces
+                  </p>
+                </div>
+                <div className="rounded-[24px] bg-white px-4 py-4 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
+                  <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
+                    Typical features
+                  </p>
+                  <p className="mt-3 text-lg font-semibold">
+                    Payments, dashboards, API-driven workflows, and AI-powered automation
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-section px-4 py-14 sm:px-6 sm:py-16 lg:px-8" id="about-me">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="rounded-[32px] bg-slate-950 p-8 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
+            <p className="section-kicker section-kicker-dark">Why teams hire me</p>
+            <h2 className="mt-5 max-w-md text-4xl font-[Sora-Bold] leading-tight tracking-[-0.04em]">
+              I turn ideas into experiences people enjoy using.
+            </h2>
+            <p className="mt-5 text-base leading-8 text-slate-300">
+              I care about the full impression a product leaves: the clarity
+              of the interface, the confidence of the interactions, and the
+              reliability of the code underneath it.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {hiringPoints.map((point) => (
+              <div
+                key={point}
+                className="glass-panel flex items-start gap-4 rounded-[28px] p-6"
+              >
+                <CheckCircle className="mt-1 shrink-0 text-rose-500" size={20} />
+                <p className="text-lg leading-8 text-slate-700">{point}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-section px-4 py-14 sm:px-6 sm:py-16 lg:px-8" id="proficiency">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="section-kicker">Core strengths</p>
+            <h2 className="mt-5 text-4xl font-[Sora-Bold] leading-tight tracking-[-0.04em] text-slate-950 sm:text-5xl">
+              The blend of skills I bring to a product team
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+            {strengths.map(({ title, description, icon: Icon }) => (
+              <article
+                key={title}
+                className="glass-panel rounded-[30px] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-100 text-rose-500">
+                  <Icon size={20} />
+                </div>
+                <h3 className="mt-6 text-2xl font-[Sora-Bold] tracking-[-0.03em] text-slate-950">
+                  {title}
+                </h3>
+                <p className="mt-4 text-base leading-8 text-slate-600">
+                  {description}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-[32px] border border-white/70 bg-white/70 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.05)] backdrop-blur">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <Code size={18} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-400 mb-0">
+                  Tools and technologies
+                </p>
+                <p className="text-lg font-semibold text-slate-900 mb-0">
+                  Built around modern frontend, mobile, and API-connected
+                  product development
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {capabilities.map((capability) => (
+                <span key={capability} className="pill-chip">
+                  {capability}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-section px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-[36px] bg-[linear-gradient(145deg,#111827_0%,#1f2937_55%,#0f766e_100%)] p-8 text-white shadow-[0_30px_90px_rgba(15,23,42,0.18)] sm:p-10">
+            <p className="section-kicker section-kicker-dark">AI implementation</p>
+            <h2 className="mt-5 max-w-xl text-4xl font-[Sora-Bold] leading-tight tracking-[-0.04em] sm:text-5xl">
+              Strong with AI automation, n8n workflows, and practical AI features.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-100/90">
+              I don&apos;t just build interfaces. I can also help teams connect
+              AI into real workflows, automate repetitive operations, and turn
+              good ideas into production-ready implementations.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {aiServices.map((service) => (
+              <div
+                key={service}
+                className="glass-panel flex items-start gap-4 rounded-[28px] p-6"
+              >
+                <Cpu className="mt-1 shrink-0 text-emerald-600" size={20} />
+                <p className="text-lg leading-8 text-slate-700">{service}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-section px-4 py-14 sm:px-6 sm:py-16 lg:px-8" id="project-images">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="section-kicker">Selected work</p>
+              <h2 className="mt-5 text-4xl font-[Sora-Bold] leading-tight tracking-[-0.04em] text-slate-950 sm:text-5xl">
+                Real product videos that show how my work actually feels
+              </h2>
+            </div>
+            <p className="max-w-xl text-base leading-8 text-slate-600">
+              Instead of static screenshots, this section highlights actual
+              product demos so companies can judge the quality, structure, and
+              polish of the experiences I build.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <Smartphone size={18} />
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-400 mb-0">
+                  Mobile app reels
+                </p>
+                <p className="text-base font-semibold leading-7 text-slate-900 sm:text-lg mb-0">
+                  Vertical demos that showcase app flow, polish, and interaction quality
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+              {mobileShowcaseVideos.map((project) => (
+                <article
+                  key={project.title}
+                  className="project-frame overflow-hidden rounded-[32px]"
+                >
+                  <div className="bg-[linear-gradient(180deg,#111827_0%,#1f2937_100%)] p-4">
+                    <div className="mx-auto max-w-[280px] overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+                      <video
+                        className="mobile-showcase-video w-full object-cover"
+                        playsInline
+                        preload="metadata"
+                        controls
+                        muted
+                        loop
+                      >
+                        <source src={project.src} type="video/mp4" />
+                      </video>
                     </div>
-                    <p className="relative text-white z-[9] mt-3 font-[400] text-center text-[#030128] text-[20px] leading-[38px]">
-                      Sometimes when I'm coding, I get totally lost in it, like I'm diving into this fascinating world where every line of code feels like a little adventure. It's like being a detective in a mystery novel, piecing together clues and solving puzzles. And in those moments, I just love getting lost in the beauty of it all.
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-sm font-medium text-slate-500">
+                      <PlayCircle size={16} />
+                      Mobile product demo
+                    </div>
+                    <h3 className="mt-4 text-[1.45rem] font-[Sora-Bold] tracking-[-0.03em] text-slate-950 sm:text-2xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-3 text-base leading-8 text-slate-600">
+                      {project.description}
                     </p>
                   </div>
-                </div>
-              </div>
+                </article>
+              ))}
+            </div>
+          </div>
 
-              <div className="relative w-[100%] pt-3">
-                <div className="relative flex white w-[100%]">
-                  <div className="absolute relative left-[50%] top-[45px] translate-x-[-50%]">
-                    <div className="absolute w-[10px] z-[99] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-                      <svg className="scroll-arrow" x="0px" y="0px" viewBox="0 0 14 31.3">
-                        <g id="Icon_feather-arrow-down" transform="translate(743 13372.368) rotate(180)">
-                          <path id="Path_14" className="st0" d="M736,13371.4v-29.3"></path>
-                          <path id="Path_15" className="st0" d="M730,13348.1l6-6l6,6"></path>
-                        </g>
-                      </svg>
-                    </div>
-                    <svg width="105.565" height="105.544" viewBox="0 0 105.565 105.544" className="scroll-icon-text">
-                      <defs>
-                        <clipPath id="clip-path">
-                          <rect id="Rectangle_6" data-name="Rectangle 6" width="105.565" height="105.544" fill="none"></rect>
-                        </clipPath>
-                      </defs>
-                      <g id="Group_40" data-name="Group 40" transform="translate(782.283 13420.272) rotate(180)">
-                        <circle id="Ellipse_2" data-name="Ellipse 2" cx="34.5" cy="34.5" r="34.5" transform="translate(764 13402.001) rotate(180)" fill="#fff"></circle>
-                        <g id="text-circle" className="text-circle" data-name="text-circle" transform="translate(782.283 13420.272) rotate(180)">
-                          <g id="Group_32" data-name="Group 32" transform="translate(0 0)">
-                            <g id="Group_31" data-name="Group 31" clip-path="url(#clip-path)">
-                              <text id="S" transform="matrix(0.947, -0.32, 0.32, 0.947, 35.048, 13.927)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">S</tspan>
-                              </text>
-                              <text id="c" transform="matrix(0.99, -0.141, 0.141, 0.99, 43.039, 11.264)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">c</tspan>
-                              </text>
-                              <text id="r" transform="translate(50.185 10.353) rotate(-0.93)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">r</tspan>
-                              </text>
-                              <text id="o" transform="matrix(0.99, 0.142, -0.142, 0.99, 54.947, 9.173)" font-size="11" font-weight="200">
-                                <tspan x="0" y="0">o</tspan>
-                              </text>
-                              <text id="l" transform="translate(62.674 11.442) rotate(15.633)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">l</tspan>
-                              </text>
-                              <text id="l-2" data-name="l" transform="translate(65.662 12.272) rotate(19.845)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">l</tspan>
-                              </text>
-                            </g>
-                          </g>
-                          <text id="_" data-name=" " transform="translate(69.409 11.503) rotate(23.89)" font-size="10" font-weight="200">
-                            <tspan x="0" y="0"> </tspan>
-                          </text>
-                          <text id="t" transform="translate(71.194 14.418) rotate(29.183)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">t</tspan>
-                          </text>
-                          <text id="o-2" data-name="o" transform="matrix(0.791, 0.612, -0.612, 0.791, 76.113, 15.878)" font-size="11" font-weight="200">
-                            <tspan x="0" y="0">o</tspan>
-                          </text>
-                          <text id="_2" data-name=" " transform="matrix(0.708, 0.706, -0.706, 0.708, 83.131, 20.257)" font-size="10" font-weight="200">
-                            <tspan x="0" y="0"> </tspan>
-                          </text>
-                          <text id="E" transform="translate(83.777 23.522) rotate(51.667)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">E</tspan>
-                          </text>
-                          <text id="x" transform="matrix(0.488, 0.873, -0.873, 0.488, 88.248, 29.196)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">x</tspan>
-                          </text>
-                          <g id="Group_34" data-name="Group 34" transform="translate(0 0)">
-                            <g id="Group_33" data-name="Group 33" clip-path="url(#clip-path)">
-                              <text id="p" transform="translate(91.442 34.702) rotate(70.596)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">p</tspan>
-                              </text>
-                              <text id="l-3" data-name="l" transform="translate(94.011 42.473) rotate(78.211)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">l</tspan>
-                              </text>
-                              <text id="o-3" data-name="o" transform="translate(95.8 45.34) rotate(85.626)" font-size="11" font-weight="200">
-                                <tspan x="0" y="0">o</tspan>
-                              </text>
-                              <text id="r-2" data-name="r" transform="translate(95.307 53.327) rotate(93.989)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">r</tspan>
-                              </text>
-                              <text id="e-2" data-name="e" transform="translate(95.097 57.933) rotate(101.924)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">e</tspan>
-                              </text>
-                              <text id="_3" data-name=" " transform="translate(95.367 65.675) rotate(108.741)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                              <text id="_4" data-name=" " transform="translate(94.405 68.507) rotate(112.618)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                            </g>
-                          </g>
-                          <text id="S-2" data-name="S" transform="translate(91.693 70.349) rotate(120.203)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">S</tspan>
-                          </text>
-                          <text id="c-2" data-name="c" transform="matrix(-0.652, 0.758, -0.758, -0.652, 87.416, 77.628)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">c</tspan>
-                          </text>
-                          <text id="r-3" data-name="r" transform="matrix(-0.751, 0.661, -0.661, -0.751, 82.661, 83.051)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">r</tspan>
-                          </text>
-                          <text id="o-4" data-name="o" transform="matrix(-0.839, 0.545, -0.545, -0.839, 79.853, 87.03)" font-size="11" font-weight="200">
-                            <tspan x="0" y="0">o</tspan>
-                          </text>
-                          <text id="l-4" data-name="l" transform="translate(72.544 90.411) rotate(154.426)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">l</tspan>
-                          </text>
-                          <g id="Group_36" data-name="Group 36" transform="translate(0 0)">
-                            <g id="Group_35" data-name="Group 35" clip-path="url(#clip-path)">
-                              <text id="l-5" data-name="l" transform="translate(69.733 91.763) rotate(158.656)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">l</tspan>
-                              </text>
-                              <text id="_5" data-name=" " transform="translate(67.406 94.813) rotate(162.723)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                              <text id="t-2" data-name="t" transform="matrix(-0.978, 0.208, -0.208, -0.978, 64.162, 93.788)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">t</tspan>
-                              </text>
-                              <text id="o-5" data-name="o" transform="translate(59.49 95.93) rotate(176.577)" font-size="11" font-weight="200">
-                                <tspan x="0" y="0">o</tspan>
-                              </text>
-                              <text id="_6" data-name=" " transform="translate(51.322 97.253) rotate(-176.283)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                              <text id="E-3" data-name="E" transform="matrix(-0.983, -0.182, 0.182, -0.983, 48.692, 95.225)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">E</tspan>
-                              </text>
-                              <text id="x-2" data-name="x" transform="translate(41.593 93.9) rotate(-160.331)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">x</tspan>
-                              </text>
-                            </g>
-                          </g>
-                          <text id="p-2" data-name="p" transform="translate(35.57 91.852) rotate(-150.533)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">p</tspan>
-                          </text>
-                          <text id="l-6" data-name="l" transform="translate(28.527 87.695) rotate(-142.995)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">l</tspan>
-                          </text>
-                          <text id="o-6" data-name="o" transform="matrix(-0.714, -0.7, 0.7, -0.714, 25.281, 86.705)" font-size="11" font-weight="200">
-                            <tspan x="0" y="0">o</tspan>
-                          </text>
-                          <text id="r-4" data-name="r" transform="translate(20.396 80.381) rotate(-127.177)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">r</tspan>
-                          </text>
-                          <text id="e-4" data-name="e" transform="translate(17.52 76.773) rotate(-119.25)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">e</tspan>
-                          </text>
-                          <g id="Group_38" data-name="Group 38" transform="translate(0 0)">
-                            <g id="Group_37" data-name="Group 37" clip-path="url(#clip-path)">
-                              <text id="_7" data-name=" " transform="translate(12.217 71.118) rotate(-112.444)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                              <text id="_8" data-name=" " transform="matrix(-0.318, -0.948, 0.948, -0.318, 11.076, 68.35)" font-size="10" font-weight="200">
-                                <tspan x="0" y="0"> </tspan>
-                              </text>
-                              <text id="S-3" data-name="S" transform="matrix(-0.19, -0.982, 0.982, -0.19, 11.899, 65.166)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">S</tspan>
-                              </text>
-                              <text id="c-3" data-name="c" transform="translate(10.363 56.89) rotate(-90.93)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">c</tspan>
-                              </text>
-                              <text id="r-5" data-name="r" transform="matrix(0.129, -0.992, 0.992, 0.129, 10.34, 49.679)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">r</tspan>
-                              </text>
-                              <text id="o-7" data-name="o" transform="translate(9.83 44.821) rotate(-74.144)" font-size="11" font-weight="200">
-                                <tspan x="0" y="0">o</tspan>
-                              </text>
-                              <text id="l-7" data-name="l" transform="translate(13.104 37.489) rotate(-66.699)" font-size="12" font-weight="200">
-                                <tspan x="0" y="0">l</tspan>
-                              </text>
-                            </g>
-                          </g>
-                          <text id="l-8" data-name="l" transform="translate(14.328 34.63) rotate(-62.488)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">l</tspan>
-                          </text>
-                          <text id="_9" data-name=" " transform="translate(14.07 30.811) rotate(-58.458)" font-size="10" font-weight="200">
-                            <tspan x="0" y="0"> </tspan>
-                          </text>
-                          <text id="t-3" data-name="t" transform="translate(17.191 29.441) rotate(-53.208)" font-size="12" font-weight="200">
-                            <tspan x="0" y="0">t</tspan>
-                          </text>
-                          <text id="o-8" data-name="o" transform="translate(19.305 24.739) rotate(-44.659)" font-size="11" font-weight="200">
-                            <tspan x="0" y="0">o</tspan>
-                          </text>
-                          <text id="_10" data-name=" " transform="translate(24.56 18.37) rotate(-37.477)" font-size="10" font-weight="200">
-                            <tspan x="0" y="0"> </tspan>
-                          </text>
-                        </g>
-                      </g>
-                    </svg>
+          <div className="mt-16 grid gap-6 lg:grid-cols-2">
+            {productWalkthroughVideos.map((project) => (
+              <article
+                key={project.title}
+                className="project-frame overflow-hidden rounded-[32px]"
+              >
+                <div className="overflow-hidden border-b border-slate-200/80 bg-slate-950 p-3">
+                  <div className="overflow-hidden rounded-[24px] border border-white/10 bg-black">
+                    <video
+                      className="desktop-showcase-video aspect-video w-full bg-black object-contain"
+                      playsInline
+                      preload="metadata"
+                      controls
+                      muted
+                    >
+                      <source src={project.src} type="video/mp4" />
+                    </video>
                   </div>
                 </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <section className="container relative pt-[130px] overflow-hidden" id="portfolio-1">
-          <div className="row justify-content-center">
-            <div className="col-xs-12 px-[20vw] pb-[40px]">
-              <h1 className="text-center font-[700] text-6xl text-[#000000]">My Work Speaks For Itself.</h1>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-between gap-4 mt-8 h-100">
-            <div className="d-flex flex-column" data-aos="fade-right">
-              <div className="rounded-[30px] mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip%20tgsm.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="d-flex flex-column" data-aos="fade-left">
-              <div className="rounded-[30px]  mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coparentingplus.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="d-flex flex-column" data-aos="fade-left">
-              <div className="rounded-[30px]  mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coveredpress.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="d-flex flex-column" data-aos="fade-left">
-              <div className="rounded-[30px] mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip-v2.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="d-flex flex-column" data-aos="fade-left">
-              <div className="rounded-[30px] mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/emmaus.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="d-flex flex-column" data-aos="fade-left">
-              <div className="rounded-[30px] mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'cover',
-                    height: '690px',
-                    width: '330px'
-                  }}
-                  playsInline={true}
-                  preload="metadata"
-                  controls={true}
-                  autoPlay={true}
-                  muted loop={true}>
-                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/sales.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-between gap-4 mt-20 h-100">
-            <div className="w-[100%] " data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Chptr</h3>
-              <div className="mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="https://quiptgsm.com/bg-2.mov" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div className="w-[100%] " data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Autarc</h3>
-              <div className="mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="https://quiptgsm.com/bg-1.mov" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div className="w-[100%] " data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Coveredpress</h3>
-              <div className="mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="https://quiptgsm.com/bg-3.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div className="w-[100%] " data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Grihabhumi</h3>
-              <div className="mx-auto overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="/videos/grihabhumi.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div className="mt-4 w-[100%] flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">GodawariMart</h3>
-              <div className="w-[100%] overflow-hidden">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="https://quiptgsm.com/bg-gd-example.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Brighter Future</h3>
-              <div className="">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="/videos/brighter.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Sales Force Automation (SFA)</h3>
-              <div className="">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="/videos/sfa.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-
-            <div className="mt-4 w-[100%]  flex-column" data-aos="fade-right">
-              <h3 className="mb-3 text-blue-500">Nyboss-Job Portal</h3>
-              <div className="">
-                <video
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%'
-                  }} playsInline={true}
-                  preload="metadata" controls={true}
-                  autoPlay={true} muted>
-                  <source src="/videos/nyboss.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="relative bg-[#edf0f4] mt-20 overflow-hidden">
-          <div className="absolute z-[0] top-0 bottom-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="809" viewBox="0 0 1440 809" fill="none">
-              <circle cx="720" cy="514" r="1002.5" stroke="#D0D0D0" />
-              <circle cx="720" cy="514" r="817.5" stroke="#D0D0D0" />
-              <circle cx="720" cy="514" r="655.5" stroke="#D0D0D0" />
-              <circle cx="720" cy="514" r="489.5" stroke="#D0D0D0" />
-              <circle cx="720" cy="514" r="337.5" stroke="#D0D0D0" />
-            </svg>
-          </div>
-
-          <section className="relative container w-100 d-flex h-[790px] pb-11" id="proficiency">
-            <div className="my-auto">
-              <div className="row justify-content-center">
-                <div className="col-xs-12 pb-11">
-                  <h1 className="text-center font-[700] text-6xl text-[#000000]">My Expertise</h1>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap">
-                {!data ? <Skeleton /> :
-                  data.map((res: any, key: number) => (
-                    <React.Fragment key={key}>
-                      <div className="p-1 col-xs-12 col-md-4" data-aos="zoom-in">
-                        <PlanCard id={0} price={(res.price === 0 ? 'Free' : res.price)} title={res.price === 0 ? '' : res.intervel} features={res?.features} handleClick={() => handleSelectPlan(res.id)} />
-                      </div>
-                    </React.Fragment>
-                  ))}
-
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <div className="bg-[#e3222b] h-[790px] d-flex w-100 relative" id="project-images">
-
-          <div className="container my-auto pt-11">
-            <div className="row ">
-              <div className="col-xs-12" data-aos="fade-in">
-                <Swiper
-                  centeredSlides={true}
-                  spaceBetween={30}
-                  breakpoints={{
-                    640: {
-                      width: 640,
-                      slidesPerView: 1,
-                    },
-                    768: {
-                      width: 768,
-                      slidesPerView: 2,
-                    },
-                  }}
-                >
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/co.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/co1.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/9.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/8.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/5.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/4.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/1.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/2.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <SwiperSlide>
-                    <div>
-                      <div style={contentStyle}>
-                        <img src="img/3.png"></img>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-
-                  <div className="d-flex">
-                    <SwiperButtonPrev>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
-                        <path d="M25 50.75C38.8672 50.75 50 39.5195 50 25.75C50 11.8828 38.8672 0.749999 25 0.749998C11.2305 0.749997 2.98262e-06 11.8828 1.77031e-06 25.75C5.66541e-07 39.5195 11.2305 50.75 25 50.75ZM10.3516 23.5039L20.4102 13.4453C21.582 12.1758 23.6328 12.1758 24.8047 13.4453C26.0742 14.6172 26.0742 16.668 24.8047 17.8398L20.1172 22.625L37.5 22.625C39.2578 22.625 40.625 23.9922 40.625 25.75C40.625 27.4102 39.2578 28.875 37.5 28.875L20.1172 28.875L24.9023 33.6602C26.1719 34.832 26.1719 36.8828 24.9023 38.0547C23.7305 39.3242 21.6797 39.3242 20.5078 38.0547L10.4492 27.9961C9.57031 27.1172 9.375 26.1406 9.375 25.75C9.375 25.2617 9.57031 24.2852 10.3516 23.5039Z" fill="white" />
-                      </svg>
-                    </SwiperButtonPrev>
-                    <SwiperButtonNext>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
-                        <path d="M25 0.25C11.1328 0.25 0 11.4805 0 25.25C0 39.1172 11.1328 50.25 25 50.25C38.7695 50.25 50 39.1172 50 25.25C50 11.4805 38.7695 0.25 25 0.25ZM39.6484 27.4961L29.5898 37.5547C28.418 38.8242 26.3672 38.8242 25.1953 37.5547C23.9258 36.3828 23.9258 34.332 25.1953 33.1602L29.8828 28.375H12.5C10.7422 28.375 9.375 27.0078 9.375 25.25C9.375 23.5898 10.7422 22.125 12.5 22.125H29.8828L25.0977 17.3398C23.8281 16.168 23.8281 14.1172 25.0977 12.9453C26.2695 11.6758 28.3203 11.6758 29.4922 12.9453L39.5508 23.0039C40.4297 23.8828 40.625 24.8594 40.625 25.25C40.625 25.7383 40.4297 26.7148 39.6484 27.4961Z" fill="white" />
-                      </svg>
-                    </SwiperButtonNext>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 text-sm font-medium text-slate-500">
+                    <PlayCircle size={16} />
+                    Product walkthrough
                   </div>
-                </Swiper>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="container mb-[90px]" id="portfolio-2">
-          <div className="px-[100px] py-11">
-
-            <div className="pt-[90px] justify-content-center">
-              <div className="col-xs-12 pb-[70px]">
-                <h1 className="text-center font-[700] text-6xl text-[#000000]">More Web app/Websites</h1>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-xs-12">
-                <div className="accordion" id="accordionPanelsStayOpenExample">
-                  <Accordion collapsed={false} title={"Co-parenting Plus"} link="https://coparentingplus.com" text={"The Most Effective Way To Connect Journalists And Publicists. We can preview all feature on Screenshare 😊"} />
-                  <Accordion collapsed={false} title={"Grihabhumi"} link="https://grihabhumi.com" text={"The Most Effective Way To Connect Journalists And Publicists. We can preview all feature on Screenshare 😊"} />
-                  <Accordion collapsed={false} title={"Coveredpress"} link="https://coveredpress.com" text={"The Most Effective Way To Connect Journalists And Publicists. We can preview all feature on Screenshare 😊"} />
-                  <Accordion collapsed={true} title={"God of trek"} link="https://godoftrek.com/" text={"Travel and tourish plan Booking web application. We can preview Admin CMS on Screenshare 😊"} />
-                  <Accordion collapsed={true} title={"Admin Coparentingplus"} link="https://admin.coparentingplus.com/admin/login" text={"An all inclusive co-parenting platform aiming to help you safeguard your families future. We can preview all feature on Screenshare 😊"} />
-                  <Accordion collapsed={true} title={"Admin Quip TGSM"} link="https://admin.quiptgsm.com/" text={"Live chat with Coach Kyle or his team, and learn how to create engaging and meaningful conversation with woman on dating apps, or over text. We can preview all feature on Screenshare 😊"} />
-                  <Accordion collapsed={true} title={"Fabtex"} link="http://fabtex.com/" text={"Fabric Booking Custom wordpress website theme with image hotspot, fabric seach by color or image feature"} />
-                  <Accordion collapsed={true} title={"Saastock"} link="http://saastock.com/" text={"Saastock is a Custom wordpress website theme."} />
-                  <Accordion collapsed={true} title={"Revealize"} link="https://revealize.com/" text={"Revealize is a Custom wordpress website theme."} />
+                  <h3 className="mt-4 text-[1.45rem] font-[Sora-Bold] tracking-[-0.03em] text-slate-950 sm:text-2xl">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 text-base leading-8 text-slate-600">
+                    {project.description}
+                  </p>
                 </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio-section px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:pb-24">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.85fr]">
+          <div className="rounded-[36px] bg-[linear-gradient(135deg,#0f172a_0%,#1e293b_45%,#be123c_100%)] p-8 text-white shadow-[0_30px_90px_rgba(15,23,42,0.22)] sm:p-10">
+            <p className="section-kicker section-kicker-dark">Next step</p>
+            <h2 className="mt-5 max-w-2xl text-4xl font-[Sora-Bold] leading-tight tracking-[-0.04em] sm:text-5xl">
+              If your team needs someone who can build polished product
+              experiences and useful AI-powered workflows, I&apos;d love to talk.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-100/90">
+              I&apos;m especially strong when a company wants somebody who can
+              own UI quality, move quickly, and think carefully about both the
+              product experience and the systems behind it.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="mailto:hamalanis1@gmail.com"
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition duration-300 hover:-translate-y-0.5"
+              >
+                Email Anis
+              </a>
+              <a
+                href="tel:+9779821941408"
+                className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
+              >
+                Call or message
+              </a>
+            </div>
+          </div>
+
+          <div className="glass-panel rounded-[36px] p-8">
+            <p className="section-kicker">What you can expect</p>
+            <div className="mt-6 space-y-5">
+              <div className="rounded-[24px] border border-slate-200 bg-white/70 p-5">
+                <h3 className="text-xl font-[Sora-Bold] text-slate-950">
+                  Clear communication
+                </h3>
+                <p className="mt-2 text-base leading-7 text-slate-600">
+                  I focus on understanding the product goal first, then building
+                  with clarity and momentum.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-slate-200 bg-white/70 p-5">
+                <h3 className="text-xl font-[Sora-Bold] text-slate-950">
+                  Strong implementation detail
+                </h3>
+                <p className="mt-2 text-base leading-7 text-slate-600">
+                  From spacing and interactions to API wiring and edge cases, I
+                  care about the final quality of the work.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-slate-200 bg-white/70 p-5">
+                <h3 className="text-xl font-[Sora-Bold] text-slate-950">
+                  Product-minded delivery
+                </h3>
+                <p className="mt-2 text-base leading-7 text-slate-600">
+                  I aim to ship experiences that are not just functional, but
+                  genuinely helpful and convincing to end users.
+                </p>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="bg-[#e3222b]">
-          <div className="container flex relative h-[650px]" id="about-me">
-            <div className="my-auto w-100">
-              <div className="text-center w-100 relative leading-[60px]">
-                <h1 className="text-white text-7xl">
-                  About Me
-                </h1>
-              </div>
-
-              <div className="flex-wrap justify-between px-6 pt-4 mx-auto d-flex">
-                <div data-aos="fade-right d-flex">
-                  <div className="relative">
-                    <div className="absolute opacity-[0.04] top-[10px]">
-                      <Hash size={300} />
-                    </div>
-                    <p className="relative text-white z-[9] mt-3 font-[400] text-center text-[#030128] text-[20px] leading-[38px]">
-                      I'm a technological visionary with full-stack engineer expertise. I have brought various products from ideation to conception including Co-parenting App, Dating coach App, Realestate marketplace, Grocery marketplace, PR management, job marketplace, Travel and tour solution, HR management, inventory management software and many AI modules including sentiment analyses to web scraping for real-life usage. Operating from a strong set of core principals, I have utilizes agile development to lead and manage engineers through the software development life cycle. I maintains a rigorous dedication to maintaining an organized infrastructure that allows for scalability and rapid growth.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div >
-    </>
+      </section>
+    </main>
   );
 };
 

@@ -1,41 +1,69 @@
-import { FacebookOutlined, InstagramOutlined, MailOutlined, MobileOutlined, SkypeOutlined } from "@ant-design/icons";
 import React from "react";
 
 export default function Footer() {
-    return (
-        <div className="border-t-[1px] bg-white">
-            <footer className="py-[60px] container">
-                <div className="row">
-                    <div className="col-md-3">
-                        <img src="/img/logo-anis.png" width={80} alt="" />
-                        <p className="text-[#141516] mt-3 text-[16px] font-[Sora-Regular]">Safe & reliable
-                            <br /> Web/Mobile app  <br /> Developer</p>
-
-                    </div>
-                    <div className="mt-2 col-md-3">
-                        <h3 className="font-[600] pb-2">Contact info</h3>
-
-                        <div className="gap-2 mt-3 d-flex align-items-center">
-                            <MailOutlined color="#e3222b" />
-                            <a href="mailto:hamalanis1@gmail.com" className="text-blue-500 text-[16px] no-underline font-[Sora-Regular]">hamalanis1@gmail.com</a>
-                        </div>
-                        <div className="gap-2 mt-3 d-flex align-items-center">
-                            <SkypeOutlined color="#e3222b" />
-                            <a href="https://join.skype.com/invite/kWT7bXEO59x4" className="text-blue-500 font-[Sora-Regular] text-[16px] no-underline">Skype Link</a>
-                        </div>
-
-                        <div className="gap-2 mt-3 d-flex align-items-center">
-                            <MobileOutlined color="#e3222b" />
-                            <a href="tel:+9779821941408" className="text-blue-500 font-[Sora-Regular] text-[16px] no-underline">+977 9821941408</a>
-                        </div>
-                    </div>
-                </div>
-
-            </footer>
-            <div className="text-center py-3 bg-white border-t-[1px]">
-                <p className="text-gray-900 font-[Sora-Regular] text-[16px] mb-0">©2024 Anis Hamal, All rights reserved Just Kidding LOL! ❤️</p>
-            </div>
+  return (
+    <footer className="border-t border-slate-200/80 px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 rounded-[32px] border border-white/70 bg-white/70 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.05)] backdrop-blur lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            Anis Hamal
+          </p>
+          <h2 className="mt-3 text-3xl font-[Sora-Bold] tracking-[-0.04em] text-slate-950">
+            Building polished products, AI automations, and practical digital
+            systems for teams that care about quality.
+          </h2>
+          <p className="mt-4 text-base leading-8 text-slate-600">
+            Open to web, mobile, AI implementation, and n8n automation
+            opportunities where thoughtful UI, strong execution, and product
+            focus matter.
+          </p>
         </div>
 
-    )
+        <div className="grid gap-4 sm:grid-cols-2">
+          <a
+            href="mailto:hamalanis1@gmail.com"
+            className="rounded-[24px] border border-slate-200 bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Email
+            </p>
+            <p className="mt-2 text-base font-semibold text-slate-900">
+              hamalanis1@gmail.com
+            </p>
+          </a>
+          <a
+            href="tel:+9779821941408"
+            className="rounded-[24px] border border-slate-200 bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Phone
+            </p>
+            <p className="mt-2 text-base font-semibold text-slate-900">
+              +977 9821941408
+            </p>
+          </a>
+          <a
+            href="https://calendly.com/hamalanis1/new-meeting-1"
+            className="rounded-[24px] border border-slate-200 bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Calendar
+            </p>
+            <p className="mt-2 text-base font-semibold text-slate-900">
+              Schedule a call
+            </p>
+          </a>
+          <a
+            href="#top"
+            className="rounded-[24px] border border-slate-200 bg-slate-950 px-5 py-4 text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+              Portfolio
+            </p>
+            <p className="mt-2 text-base font-semibold">Back to top</p>
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 }

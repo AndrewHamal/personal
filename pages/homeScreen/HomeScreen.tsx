@@ -395,7 +395,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   controls={true}
                   autoPlay={true}
                   muted loop={true}>
-                  <source src="/videos/coparentingplus.mp4" type="video/mp4" />
+                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coparentingplus.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

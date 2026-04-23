@@ -413,7 +413,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   controls={true}
                   autoPlay={true}
                   muted loop={true}>
-                  <source src="/videos/coveredpress.mp4" type="video/mp4" />
+                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/coveredpress.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -431,7 +431,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   controls={true}
                   autoPlay={true}
                   muted loop={true}>
-                  <source src="/videos/quip-v2.mp4" type="video/mp4" />
+                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip-v2.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -449,7 +449,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   controls={true}
                   autoPlay={true}
                   muted loop={true}>
-                  <source src="/videos/emmaus.mp4" type="video/mp4" />
+                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/emmaus.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -467,7 +467,7 @@ const HomeScreen = ({ setShowSider }: any) => {
                   controls={true}
                   autoPlay={true}
                   muted loop={true}>
-                  <source src="/videos/sales.mp4" type="video/mp4" />
+                  <source src="https://xb02uorssndl6vzc.public.blob.vercel-storage.com/sales.mp4" type="video/mp4" />
                 </video>
               </div>
             </div>

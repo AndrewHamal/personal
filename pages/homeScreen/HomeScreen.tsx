@@ -77,6 +77,14 @@ const mobileShowcaseVideos = [
     src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/quip-v2.mp4",
   },
   {
+    title: "Material Assets",
+    description: "Rare Coin Value Analyser - Mobile app built in 3 days. 
+React Native + Supabase + n8n + OpenAI Vision. User snaps a 
+photo of a coin, AI identifies it (year, country, condition) 
+and pulls live market value in ~4 seconds.",
+    src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/kz8ayhyvo8nhvuqzd4eq.mp4",
+  },
+  {
     title: "Emmaus",
     description: "Smooth user flows designed for real usage and easy navigation.",
     src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/emmaus.mp4",

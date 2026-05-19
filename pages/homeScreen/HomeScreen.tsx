@@ -78,10 +78,10 @@ const mobileShowcaseVideos = [
   },
   {
     title: "Material Assets",
-    description: "Rare Coin Value Analyser - Mobile app built in 3 days. 
+    description: `Rare Coin Value Analyser - Mobile app built in 3 days. 
 React Native + Supabase + n8n + OpenAI Vision. User snaps a 
 photo of a coin, AI identifies it (year, country, condition) 
-and pulls live market value in ~4 seconds.",
+and pulls live market value in ~4 seconds.`,
     src: "https://xb02uorssndl6vzc.public.blob.vercel-storage.com/kz8ayhyvo8nhvuqzd4eq.mp4",
   },
   {
